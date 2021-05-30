@@ -91,9 +91,18 @@ funcDockerInitMysqlAndRedis(){
   funcStartServer(){
       #start server
     cd  $serverDir
+    sleep 1:
     nohup ./go-vben-admin &
-    echo 'server start  success'
-    echo 'listen port:80'
+     command=`netstat -ln|grep go-vben-admin`
+   if [  "$command" == "" ]
+   then
+	echo -e  'server start  success' 
+   echo 'listen port:80'
+   else
+	echo "server start faild"
+   fi
+   
+   
   }
   #安装go环境脚本
   if ! type go >/dev/null 2>&1; then
