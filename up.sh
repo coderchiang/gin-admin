@@ -96,10 +96,11 @@ funcDockerInitMysqlAndRedis(){
      command=`netstat -ln|grep go-vben-admin`
    if [  "$command" == "" ]
    then
-	echo -e  'server start  success' 
-   echo 'listen port:80'
+   echo "server start faild"
+	
    else
-	echo "server start faild"
+	echo -e  'server start  success' 
+   echo "listen port:$command"
    fi
    
    
