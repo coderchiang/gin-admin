@@ -120,7 +120,7 @@ funcBuildServer
 fi
 
 #编译nodejs
-funcBuildSite
+#funcBuildSite
 
 #安装docker 环境
  if ! type docker  >/dev/null 2>&1; then
