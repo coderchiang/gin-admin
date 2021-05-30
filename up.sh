@@ -91,7 +91,7 @@ funcDockerInitMysqlAndRedis(){
   funcStartServer(){
       #start server
     cd  $serverDir
-    sleep 1:
+    sleep 1
     nohup ./go-vben-admin &
      command=`netstat -ln|grep go-vben-admin`
    if [  "$command" == "" ]
