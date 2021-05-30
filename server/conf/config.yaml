@@ -8,7 +8,7 @@ mysql:
   username: root
   password: '123456'
   path: 'localhost:3306'
-  dbname: 'ginadmin'
+  dbname: 'gin_admin'
   config: 'charset=utf8mb4&parseTime=true&loc=Local&timeout=1s'
   max-idle-conns: 10
   max-open-conns: 10
