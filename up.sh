@@ -94,7 +94,7 @@ funcDockerInitMysqlAndRedis(){
     cd  $serverDir
     sleep 1
     nohup ./go-vben-admin &
-     command=`netstat -ln|grep go-vben-admin`
+     command=`netstat -nlp |grep go-vben-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
    if [  "$command" == "" ]
    then
    echo "server start faild"
