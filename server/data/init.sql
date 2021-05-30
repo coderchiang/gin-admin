@@ -13,7 +13,7 @@
 
  Date: 31/05/2021 05:23:11
 */
-CREATE DATABASE  `gin_admin`
+CREATE DATABASE IF NOT EXISTS `gin_admin`
 DEFAULT CHARACTER SET utf8mb4
 DEFAULT COLLATE utf8mb4_general_ci;
 USE gin_admin;
