@@ -23,8 +23,8 @@ funcBuildServer() {
     export GO111MODULE=on
     cd $serverDir
     go mod tidy
-    GOOS=linux GOARCH=amd64 go build -o $serverDir/go-vben-admin
-    if [  -f $serverDir/go-vben-admin ]; then
+    GOOS=linux GOARCH=amd64 go build -o $serverDir/gin-admin
+    if [  -f $serverDir/gin-admin ]; then
         echo 'server module build  finished'
     else
         echo "server module build false" 1>&2
@@ -92,9 +92,10 @@ funcDockerInitMysqlAndRedis(){
   funcStartServer(){
       #start server
     cd  $serverDir
+    ps -ef |grep gin-admin|grep -v grep|awk '{print $2}'|xargs kill -9
     sleep 1
-    nohup ./go-vben-admin &
-     command=`netstat -nlp |grep go-vben-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
+    nohup ./gin-admin &
+     command=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
    if [  "$command" == "" ]
    then
    echo "server start faild"
