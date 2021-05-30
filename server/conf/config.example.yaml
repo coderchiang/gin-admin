@@ -42,5 +42,5 @@ casbin:
   model-path: './resource/rbac_model.conf'
 
 baidumap:
-  ip_location_url: "http://app.map.baidu.com/location/ip?ak="
+  ip_location_url: "http://api.map.baidu.com/location/ip?ak="
   ak: "vMA1yoLuen421tmxsV8fFCGStbertF10"

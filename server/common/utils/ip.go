@@ -8,12 +8,12 @@ import (
 )
 
 func GetLocation(ip string) interface{} {
-	if ip == "127.0.0.1" || ip == "localhost"||ip=="::1" {
+	if ip == "127.0.0.1" || ip == "localhost" || ip == "::1" {
 		return "内部IP"
 	}
-	resp, err := http.Get(common.CONFIG.BaiduMap.IpLocationUrl + common.CONFIG.BaiduMap.AK + "&ip="+ip+"&coor=bd09ll")
+	resp, err := http.Get(common.CONFIG.BaiduMap.IpLocationUrl + common.CONFIG.BaiduMap.AK + "&ip=" + ip + "&coor=bd09ll")
 	if err != nil {
-		panic(err)
+		common.LOG.Warn(err.Error())
 
 	}
 	defer resp.Body.Close()
@@ -25,7 +25,7 @@ func GetLocation(ip string) interface{} {
 	if err != nil {
 		return "未知位置"
 	}
-	if m["address"] == "" ||m["address"]==nil{
+	if m["address"] == "" || m["address"] == nil {
 		return "未知位置"
 	}
 	return m["address"]
