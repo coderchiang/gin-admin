@@ -5,6 +5,7 @@ baseDir=`echo $PWD`
 serverDir=`echo $baseDir/server`
 webDir=`echo $baseDir/web`
 dataDir=`echo $serverDir/data`
+confDir=`echo $serverDir/conf`
 goVersion=`echo "go1.16.4.linux-amd64"`
 nodeVersion=`echo "node-v14.17.0-linux-x64"`
 
@@ -87,7 +88,7 @@ funcDockerInitMysqlAndRedis(){
     ls $dataDir
     docker run -p 3306:3306 --name mysql  -v /data/mysql:/var/lib/mysql  -v $dataDir:/docker-entrypoint-initdb.d/   -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
     #启动redis
-    docker run -p 6379:6379 --name redis -v /data/docker/redis/redis.conf:/etc/redis/redis.conf  -v /data/docker/redis/data:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes
+    docker run -p 6379:6379 --name redis -v $confDir/redis.conf:/etc/redis/redis.conf  -v /data/redis/data:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes
 }
   funcStartServer(){
       #start server
@@ -99,7 +100,8 @@ funcDockerInitMysqlAndRedis(){
 
    then
      nohup ./gin-admin &
-	
+	echo -e  'server start  success' 
+   echo "listen port:$command"
    else
    ps -ef |grep gin-admin|grep -v grep|awk '{print $2}'|xargs kill -9
    nohup ./gin-admin &
