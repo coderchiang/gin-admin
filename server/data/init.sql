@@ -16,6 +16,7 @@
 CREATE DATABASE IF NOT EXISTS gin_admin
 DEFAULT CHARACTER SET utf8mb4
 DEFAULT COLLATE utf8mb4_general_ci;
+
 USE gin_admin;
 
 SET NAMES utf8mb4;
