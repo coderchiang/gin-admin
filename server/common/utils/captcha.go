@@ -2,7 +2,7 @@ package utils
 
 import (
 	"bytes"
-	"gin-vben-admin/common"
+	"gin-admin/common"
 	"github.com/dchest/captcha"
 	"net/http"
 	"path"

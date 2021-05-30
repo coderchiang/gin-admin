@@ -1,5 +1,5 @@
 export default {
   logoutTip: 'Reminder',
-  logoutMessage: 'Confirm to exit the system?',
+  logoutMessage: 'Confirm to exit the admin?',
   menuLoading: 'Menu loading...',
 };

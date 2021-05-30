@@ -2,9 +2,9 @@ package initialize
 
 import (
 	"fmt"
-	"gin-vben-admin/common"
-	"gin-vben-admin/common/utils"
-	"gin-vben-admin/conf"
+	"gin-admin/common"
+	"gin-admin/common/utils"
+	"gin-admin/conf"
 	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

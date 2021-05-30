@@ -3,9 +3,9 @@ package initialize
 import (
 	"flag"
 	"fmt"
+	"gin-admin/common"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"gin-vben-admin/common"
 	"os"
 )
 

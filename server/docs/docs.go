@@ -18,7 +18,7 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "https://github.com/coderchiang/go-vben-admin",
+        "termsOfService": "https://github.com/coderchiang/gin-admin",
         "contact": {
             "name": "chrischiang",
             "url": "http://2wm.top",
@@ -29,7 +29,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/system/dept/add": {
+        "/app/admin/dept/add": {
             "post": {
                 "description": "添加部门",
                 "consumes": [
@@ -82,7 +82,7 @@ var doc = `{
                 }
             }
         },
-        "/api/system/dept/list": {
+        "/app/admin/dept/list": {
             "get": {
                 "description": "获取部门列表",
                 "consumes": [
@@ -287,7 +287,7 @@ var SwaggerInfo = swaggerInfo{
 	BasePath:    "",
 	Schemes:     []string{},
 	Title:       "go vben admin API",
-	Description: "Golang api of admin",
+	Description: "Golang admin",
 }
 
 type s struct{}

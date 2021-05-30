@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"gin-vben-admin/common"
+	"gin-admin/common"
 	"github.com/casbin/casbin"
 	"github.com/casbin/casbin/util"
 	gormadapter "github.com/casbin/gorm-adapter"

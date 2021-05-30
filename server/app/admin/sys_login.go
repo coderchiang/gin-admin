@@ -1,9 +1,9 @@
-package system
+package admin
 
 import (
-	"gin-vben-admin/dto"
-	"gin-vben-admin/middleware"
-	"gin-vben-admin/service"
+	"gin-admin/dto"
+	"gin-admin/middleware"
+	"gin-admin/service"
 	"github.com/dchest/captcha"
 	"github.com/gin-gonic/gin"
 	"strconv"

@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"gin-vben-admin/common"
+	"gin-admin/common"
 	"github.com/gin-gonic/gin"
 	"strings"
 )
@@ -20,6 +20,7 @@ func CasbinHandler() gin.HandlerFunc {
 		_=common.CASBIN.LoadPolicy()
 			ok,err:= common.CASBIN.EnforceSafe(sub, obj, act)
 			if common.CONFIG.System.Env == "develop" ||ok{
+
 
 					c.Next()
 

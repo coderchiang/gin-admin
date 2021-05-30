@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"errors"
-	"gin-vben-admin/common"
-	"gin-vben-admin/dto"
+	"gin-admin/common"
+	"gin-admin/dto"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

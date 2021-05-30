@@ -39,7 +39,7 @@
 
   import { errorStore, ErrorInfo } from '/@/store/modules/error';
 
-  // import { fireErrorApi } from '/@/api/demo/error';
+  // import { fireErrorApi } from '/@/app/demo/error';
 
   import { getColumns } from './data';
 

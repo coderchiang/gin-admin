@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"gin-vben-admin/common"
-	"gin-vben-admin/dao"
+	"gin-admin/common"
+	"gin-admin/dao"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"go.uber.org/zap"

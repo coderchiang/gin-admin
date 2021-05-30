@@ -3,10 +3,10 @@ package service
 import (
 	//"bytes"
 	"fmt"
-	"gin-vben-admin/common"
-	"gin-vben-admin/common/utils"
-	"gin-vben-admin/dao"
-	"gin-vben-admin/dto"
+	"gin-admin/common"
+	"gin-admin/common/utils"
+	"gin-admin/dao"
+	"gin-admin/dto"
 	"github.com/gin-gonic/gin"
 	"github.com/mssola/user_agent"
 	"go.uber.org/zap"
@@ -79,14 +79,14 @@ func CreatOpLog(c *gin.Context, Username string, latencyTime time.Duration,Remar
 	sysOperLog.OperName =Username
 	sysOperLog.RequestMethod = reqMethod
 	sysOperLog.OperUrl = reqUri
-	if reqUri == "/api/login" {
+	if reqUri == "/app/login" {
 		sysOperLog.BusinessType = "10"
 		sysOperLog.Title = "用户登录"
 		sysOperLog.OperName = Username
-	} else if strings.Contains(reqUri, "/api/logout") {
+	} else if strings.Contains(reqUri, "/app/logout") {
 		sysOperLog.Title = "用户登出"
 		sysOperLog.BusinessType = "11"
-	} else if strings.Contains(reqUri, "/api/system/base/captcha") {
+	} else if strings.Contains(reqUri, "/app/admin/base/captcha") {
 		sysOperLog.BusinessType = "12"
 		sysOperLog.Title = "验证码"
 	} else {

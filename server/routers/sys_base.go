@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"gin-vben-admin/middleware"
+	"gin-admin/middleware"
 	"github.com/gin-gonic/gin"
-	v1 "gin-vben-admin/api/system"
+	v1 "gin-admin/app/admin"
 )
 
 func InitBaseRouter(Router *gin.RouterGroup) {

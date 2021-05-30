@@ -1,16 +1,16 @@
 package main
 
 import (
-	"gin-vben-admin/common"
-	_ "gin-vben-admin/docs"
-	"gin-vben-admin/initialize"
+	"gin-admin/common"
+	_ "gin-admin/docs"
+	"gin-admin/initialize"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 // @title go vben admin API
 // @version 1.0
-// @description  Golang api of admin
-// @termsOfService https://github.com/coderchiang/go-vben-admin
+// @description  Golang admin
+// @termsOfService https://github.com/coderchiang/gin-admin
 
 // @contact.name chrischiang
 // @contact.url http://2wm.top

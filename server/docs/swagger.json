@@ -1,9 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Golang api of admin",
+        "description": "Golang admin",
         "title": "go vben admin API",
-        "termsOfService": "https://github.com/coderchiang/go-vben-admin",
+        "termsOfService": "https://github.com/coderchiang/gin-admin",
         "contact": {
             "name": "chrischiang",
             "url": "http://2wm.top",
@@ -13,7 +13,7 @@
     },
     "host": "127.0.0.1:80",
     "paths": {
-        "/api/system/dept/add": {
+        "/app/admin/dept/add": {
             "post": {
                 "description": "添加部门",
                 "consumes": [
@@ -66,7 +66,7 @@
                 }
             }
         },
-        "/api/system/dept/list": {
+        "/app/admin/dept/list": {
             "get": {
                 "description": "获取部门列表",
                 "consumes": [

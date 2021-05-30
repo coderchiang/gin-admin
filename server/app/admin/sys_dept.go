@@ -1,9 +1,9 @@
-package system
+package admin
 
 import (
-	"gin-vben-admin/dto"
-	"gin-vben-admin/middleware"
-	"gin-vben-admin/service"
+	"gin-admin/dto"
+	"gin-admin/middleware"
+	"gin-admin/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,7 +20,7 @@ import (
 // @Param page query string false "当前页"
 // @Param pageSize query string false "每页条数"
 // @Success 200 {object} middleware.Response{result=dto.SysDeptOutput{items=[]dto.SysDept}}
-// @Router /api/system/dept/list [get]
+// @Router /app/admin/dept/list [get]
 func GetDeptTreeAll(c *gin.Context) {
 		var q dto.QuerySysDept
 		if err := c.ShouldBind(&q); err != nil {
@@ -45,7 +45,7 @@ func GetDeptTreeAll(c *gin.Context) {
 // @Param Authorization header   string true "token"
 // @Param body body  dto.SysDeptInput true "部门信息"
 // @Success 200 {object}  middleware.Response{result=bool} "success"
-// @Router /api/system/dept/add [post]
+// @Router /app/admin/dept/add [post]
 func CreateDept(c *gin.Context) {
 	var dept dto.SysDept
 	err := c.ShouldBindJSON(&dept)

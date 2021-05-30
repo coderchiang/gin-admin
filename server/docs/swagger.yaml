@@ -67,12 +67,12 @@ info:
     email: 2501170033@qq.com
     name: chrischiang
     url: http://2wm.top
-  description: Golang api of admin
-  termsOfService: https://github.com/coderchiang/go-vben-admin
+  description: Golang admin
+  termsOfService: https://github.com/coderchiang/gin-admin
   title: go vben admin API
   version: "1.0"
 paths:
-  /api/system/dept/add:
+  /app/admin/dept/add:
     post:
       consumes:
       - application/json
@@ -104,7 +104,7 @@ paths:
       summary: 添加部门
       tags:
       - 部门管理
-  /api/system/dept/list:
+  /app/admin/dept/list:
     get:
       consumes:
       - application/json

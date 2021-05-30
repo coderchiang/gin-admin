@@ -1,7 +1,7 @@
 package common
 
 import (
-	"gin-vben-admin/conf"
+	"gin-admin/conf"
 	"github.com/casbin/casbin"
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/gorm"

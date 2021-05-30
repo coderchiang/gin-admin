@@ -2,12 +2,12 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "gin-vben-admin/api/system"
-	"gin-vben-admin/middleware"
+	v1 "gin-admin/app/admin"
+	"gin-admin/middleware"
 )
 
 func InitUserRouter(Router *gin.RouterGroup)  {
-	UserGroup := Router.Group("system").Use(middleware.JWTAuth()).Use(middleware.CasbinHandler()).Use(middleware.Logger())
+	UserGroup := Router.Group("admin").Use(middleware.JWTAuth()).Use(middleware.CasbinHandler()).Use(middleware.Logger())
 	{
 		UserGroup.GET("/user/list", v1.GetUserList)
 		UserGroup.POST("/user/add", v1.CreateUser)

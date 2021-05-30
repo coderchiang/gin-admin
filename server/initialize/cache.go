@@ -1,7 +1,7 @@
 package initialize
 
 import (
-	"gin-vben-admin/common"
+	"gin-admin/common"
 	"github.com/go-redis/redis"
 	"go.uber.org/zap"
 )

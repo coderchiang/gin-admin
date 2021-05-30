@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"gin-vben-admin/common"
+	"gin-admin/common"
 	"go.uber.org/zap"
 	"os"
 	"path/filepath"

@@ -47,7 +47,7 @@
         type: Function as PropType<(arg?: Recordable) => Promise<OptionsItem[]>>,
         default: null,
       },
-      // api params
+      // app params
       params: {
         type: Object as PropType<Recordable>,
         default: () => {},

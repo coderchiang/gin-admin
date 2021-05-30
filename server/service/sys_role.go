@@ -3,10 +3,10 @@ package service
 import (
 	"encoding/json"
 	"errors"
-	"gin-vben-admin/common"
-	"gin-vben-admin/common/utils"
-	"gin-vben-admin/dao"
-	"gin-vben-admin/dto"
+	"gin-admin/common"
+	"gin-admin/common/utils"
+	"gin-admin/dao"
+	"gin-admin/dto"
 	"go.uber.org/zap"
 	"strconv"
 	"time"
@@ -170,8 +170,8 @@ func GetRoleCasbinRule(role *dao.SysRole,roleMenuList []*dao.SysMenu)(sysCasbin 
 
 		}
 		//加入通用的鉴权的path
-	sysCasbin=append(sysCasbin,dto.SysCasbin{RoleId:strconv.Itoa(role.ID),Path: "/system/user/menu",Method: "GET"})
-	sysCasbin=append(sysCasbin,dto.SysCasbin{RoleId:strconv.Itoa(role.ID),Path: "/system/user/info",Method: "GET"})
+	sysCasbin=append(sysCasbin,dto.SysCasbin{RoleId:strconv.Itoa(role.ID),Path: "/admin/user/menu",Method: "GET"})
+	sysCasbin=append(sysCasbin,dto.SysCasbin{RoleId:strconv.Itoa(role.ID),Path: "/admin/user/info",Method: "GET"})
 	//sysCasbin=append(sysCasbin,dto.SysCasbin{RoleId:strconv.Itoa(role.ID),Path: "/login",Method: "POST"})
 	//sysCasbin=append(sysCasbin,dto.SysCasbin{RoleId:strconv.Itoa(role.ID),Path: "/logout",Method: "POST"})
 

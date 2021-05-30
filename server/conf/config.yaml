@@ -2,13 +2,13 @@ system:
   db-type: mysql
   cache-type: redis
   port: '80'
-  env: 'env'  # Change to "develop" to skip authentication for development mode
+  env: 'product'  # Change to "develop" to skip authentication for development mode
 
 mysql:
   username: root
   password: '123456'
   path: 'localhost:3306'
-  dbname: 'gin-vben-admin'
+  dbname: 'gin_admin'
   config: 'charset=utf8mb4&parseTime=true&loc=Local&timeout=1s'
   max-idle-conns: 10
   max-open-conns: 10
@@ -22,7 +22,7 @@ redis:
 log:
   level: info
   format: console
-  prefix: '[gin-vben-admin]'
+  prefix: '[gin-admin]'
   director: log
   link-name: latest_log
   showLine: true
@@ -31,7 +31,7 @@ log:
   log-in-console: true
 
 jwt:
-  signing-key: 'go-vben-admin'
+  signing-key: 'gin-admin'
 
 captcha:
   key-long: 4
@@ -42,5 +42,5 @@ casbin:
   model-path: './resource/rbac_model.conf'
 
 baidumap:
-  ip_location_url: "http://api.map.baidu.com/location/ip?ak="
+  ip_location_url: "http://app.map.baidu.com/location/ip?ak="
   ak: "vMA1yoLuen421tmxsV8fFCGStbertF10jjm"

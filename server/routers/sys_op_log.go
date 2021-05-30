@@ -2,12 +2,12 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "gin-vben-admin/api/system"
-	"gin-vben-admin/middleware"
+	v1 "gin-admin/app/admin"
+	"gin-admin/middleware"
 )
 
 func InitOpLogRouter(Router *gin.RouterGroup)  {
-	OpLogRouter := Router.Group("system").Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
+	OpLogRouter := Router.Group("admin").Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
 	{
 		OpLogRouter.GET("/log/list", v1.GetOperLogList)
 		//OpLogRouter.GET("/getOperLogListByIds", v1.GetOperLogListByIds)

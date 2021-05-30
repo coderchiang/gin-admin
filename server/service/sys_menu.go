@@ -2,10 +2,10 @@ package service
 
 import (
 	"errors"
-	"gin-vben-admin/common"
-	"gin-vben-admin/common/utils"
-	"gin-vben-admin/dao"
-	"gin-vben-admin/dto"
+	"gin-admin/common"
+	"gin-admin/common/utils"
+	"gin-admin/dao"
+	"gin-admin/dto"
 	"strconv"
 	"time"
 )

@@ -5,19 +5,14 @@
  Source Server Type    : MySQL
  Source Server Version : 50733
  Source Host           : centos8.cn:3306
- Source Schema         : gin-vben-admin
+ Source Schema         : gin_admin
 
  Target Server Type    : MySQL
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 12/05/2021 20:09:26
+ Date: 31/05/2021 02:37:48
 */
-
-CREATE DATABASE IF NOT EXISTS go_vben_admin
-DEFAULT CHARACTER SET utf8mb4
-DEFAULT COLLATE utf8mb4_general_ci;
-USE go_vben_admin;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -114,22 +109,22 @@ INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/edit', 'PUT', '', '',
 INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/role/add', 'POST', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/menu', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/info', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/role/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/log', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/menu', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/dashboard/analysis', 'PUT', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/dept/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/log', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/menu/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/role/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/password', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/role', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/log/list', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/dashboard', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/password', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/dept', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/menu', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user/menu', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user/info', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/menu/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/user/menu', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/user/info', 'GET', '', '', '');
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -199,34 +194,34 @@ CREATE TABLE `sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (1, '2021-05-11 21:35:24', '2021-05-11 21:35:24', NULL, '', '/dashboard', 0, 0, 0, NULL, '', '仪表大盘', 'LAYOUT', 0, 0, 1, '/dashboard', 1, 0, 1, 1);
+INSERT INTO `sys_menu` VALUES (1, '2021-05-31 02:10:55', '2021-05-31 02:10:55', NULL, '', '/dashboard', 0, 0, 0, 'ant-design:code-outlined', '', '仪表大盘', 'LAYOUT', 0, 0, 1, '/dashboard', 1, 0, 1, 1);
 INSERT INTO `sys_menu` VALUES (2, '2021-05-12 00:18:04', '2021-05-12 00:18:04', NULL, '', 'analysis', 4, 0, 0, 'ant-design:apple-filled', '', '今日数据', '/dashboard/analysis/index', 1, 1, 1, '/dashboard/analysis', 1, 0, 2, 3);
-INSERT INTO `sys_menu` VALUES (3, '2021-04-28 06:37:14', '2021-04-28 06:37:14', NULL, '', '/system', 3, 0, 0, NULL, '', '系统管理', 'LAYOUT', 0, 0, 1, '/system', 0, 0, 1, 1);
-INSERT INTO `sys_menu` VALUES (4, '2021-05-11 23:37:47', '2021-05-11 23:37:47', NULL, '', 'role', 3, 0, 0, 'ant-design:team-outlined', '', '角色管理', '/system/role/index', 1, 3, 1, '/system/role', 0, 0, 2, 1);
-INSERT INTO `sys_menu` VALUES (5, '2021-05-11 23:41:04', '2021-05-11 23:41:04', NULL, '', 'user', 5, 0, 0, 'ant-design:qq-circle-filled', '', '账号管理', '/system/user/index', 1, 3, 1, '/system/user', 0, 0, 2, 1);
-INSERT INTO `sys_menu` VALUES (8, '2021-05-12 00:17:10', '2021-05-12 00:17:10', NULL, '', 'menu', 7, 0, 0, 'ant-design:appstore-twotone', '', '菜单管理', '/system/menu/index', 1, 3, 1, '/system/menu', 0, 0, 2, 1);
-INSERT INTO `sys_menu` VALUES (10, '2021-05-10 03:34:28', '2021-05-10 03:34:28', NULL, '', 'del', 6, 0, 0, NULL, '', '删除角色', '', 2, 4, 1, '/system/role/del', 0, 0, 3, 4);
-INSERT INTO `sys_menu` VALUES (11, '2021-05-10 15:17:22', '2021-05-10 15:17:22', NULL, '', 'edit', 4, 0, 0, NULL, '', '编辑角色', '', 2, 4, 1, '/system/role/edit', 0, 0, 3, 3);
-INSERT INTO `sys_menu` VALUES (26, '2021-05-10 03:35:44', '2021-05-10 03:35:44', NULL, '', 'edit', 3, 0, 0, NULL, '', '编辑菜单', '', 2, 8, 1, '/system/menu/edit', 1, 0, 3, 3);
-INSERT INTO `sys_menu` VALUES (32, '2021-05-10 03:35:51', '2021-05-10 03:35:51', NULL, '', 'del', 6, 0, 0, NULL, '', '删除菜单', '', 2, 8, 1, '/system/menu/del', 1, 0, 3, 4);
-INSERT INTO `sys_menu` VALUES (35, '2021-05-11 22:27:11', '2021-05-11 22:27:11', NULL, '', 'dept', 2, 0, 0, 'ant-design:apartment-outlined', '', '部门管理', '/system/dept/index', 1, 3, 1, '/system/dept', 1, 0, 2, 1);
-INSERT INTO `sys_menu` VALUES (36, '2021-05-12 00:17:40', '2021-05-12 00:17:40', NULL, '', 'password', 8, 0, 0, 'ant-design:lock-outlined', '', '修改密码', '/system/password/index', 1, 3, 1, '/system/password', 1, 0, 2, 2);
-INSERT INTO `sys_menu` VALUES (37, '2021-05-11 20:52:26', '2021-05-11 20:52:26', NULL, '', 'edit', 2, 0, 0, NULL, '', '编辑部门', '', 2, 35, 1, '/system/dept/edit', 1, 0, 3, 3);
-INSERT INTO `sys_menu` VALUES (38, '2021-05-10 03:38:38', '2021-05-10 03:38:38', NULL, '', 'edit', 4, 0, 0, NULL, '', '编辑账号', '', 2, 5, 1, '/system/user/edit', 1, 0, 3, 3);
-INSERT INTO `sys_menu` VALUES (40, '2021-05-10 03:38:48', '2021-05-10 03:38:48', NULL, '', 'del', 6, 0, 0, NULL, '', '删除账号', '', 2, 5, 1, '/system/user/del', 1, 0, 3, 4);
-INSERT INTO `sys_menu` VALUES (42, '2021-05-11 22:38:46', '2021-05-11 22:38:46', NULL, '', 'log', 7, 0, 0, 'ant-design:read-filled', '', '日志管理', '/system/log/index', 1, 3, 1, '/system/log', 1, 0, 2, 1);
-INSERT INTO `sys_menu` VALUES (51, '2021-05-11 21:01:46', '2021-05-11 21:01:46', NULL, '', 'add', 2, 0, 0, NULL, '', '新增菜单', '', 2, 8, 1, '/system/menu/add', 1, 0, 3, 2);
-INSERT INTO `sys_menu` VALUES (52, '2021-05-10 15:05:41', '2021-05-10 15:05:41', NULL, '', 'add', 3, 0, 0, NULL, '', '新增部门', '', 2, 35, 1, '/system/dept/add', 1, 0, 3, 2);
-INSERT INTO `sys_menu` VALUES (53, '2021-05-10 15:33:55', '2021-05-10 15:33:55', NULL, '', 'add', 2, 0, 0, NULL, '', '新增角色', '', 2, 4, 1, '/system/role/add', 1, 0, 3, 2);
-INSERT INTO `sys_menu` VALUES (54, '2021-05-11 21:01:30', '2021-05-11 21:01:30', NULL, '', 'add', 2, 0, 0, NULL, '', '新增账号', '', 2, 5, 1, '/system/user/add', 1, 0, 3, 2);
-INSERT INTO `sys_menu` VALUES (55, '2021-05-11 20:52:38', '2021-05-11 20:52:38', NULL, '', 'del', 5, 0, 0, NULL, '', '删除部门', '', 2, 35, 1, '/system/dept/del', 1, 0, 3, 4);
-INSERT INTO `sys_menu` VALUES (59, '2021-05-11 20:59:48', '2021-05-11 20:59:48', NULL, '', 'del', 2, 0, 0, NULL, '', '删除日志', '', 2, 42, 1, '/system/log/del', 1, 0, 3, 4);
-INSERT INTO `sys_menu` VALUES (60, '2021-05-11 19:42:49', '2021-05-11 19:42:49', NULL, '', 'del_batch', 2, 0, 0, NULL, '', '批量删除日志', '', 2, 42, 1, '/system/log/del_batch', 1, 0, 3, 4);
-INSERT INTO `sys_menu` VALUES (61, '2021-05-11 20:57:31', '2021-05-11 20:57:31', NULL, '', '', 1, 0, 0, NULL, '', '部门列表', '', 2, 35, 1, '/system/dept/list', 1, 0, 3, 1);
-INSERT INTO `sys_menu` VALUES (62, '2021-05-11 20:58:53', '2021-05-11 20:58:53', NULL, '', '', 1, 0, 0, NULL, '', '角色列表', '', 2, 4, 1, '/system/role/list', 1, 0, 3, 1);
-INSERT INTO `sys_menu` VALUES (63, '2021-05-11 20:59:33', '2021-05-11 20:59:33', NULL, '', '', 1, 0, 0, NULL, '', '日志列表', '', 2, 42, 1, '/system/log/list', 1, 0, 3, 1);
-INSERT INTO `sys_menu` VALUES (64, '2021-05-11 21:00:41', '2021-05-11 21:00:41', NULL, '', '', 1, 0, 0, NULL, '', '账号列表', '', 2, 5, 1, '/system/user/list', 1, 0, 3, 1);
-INSERT INTO `sys_menu` VALUES (65, '2021-05-11 21:01:12', '2021-05-11 21:01:12', NULL, '', '', 1, 0, 0, NULL, '', '菜单列表', '', 2, 8, 1, '/system/menu/list', 1, 0, 3, 1);
+INSERT INTO `sys_menu` VALUES (3, '2021-05-31 02:02:32', '2021-05-31 02:02:32', NULL, '', '/admin', 3, 0, 0, 'ant-design:appstore-filled', '', '系统管理', 'LAYOUT', 0, 0, 1, '/admin', 0, 0, 1, 1);
+INSERT INTO `sys_menu` VALUES (4, '2021-05-11 23:37:47', '2021-05-11 23:37:47', NULL, '', 'role', 3, 0, 0, 'ant-design:team-outlined', '', '角色管理', '/system/role/index', 1, 3, 1, '/admin/role', 0, 0, 2, 1);
+INSERT INTO `sys_menu` VALUES (5, '2021-05-11 23:41:04', '2021-05-11 23:41:04', NULL, '', 'user', 5, 0, 0, 'ant-design:qq-circle-filled', '', '账号管理', '/system/user/index', 1, 3, 1, '/admin/user', 0, 0, 2, 1);
+INSERT INTO `sys_menu` VALUES (8, '2021-05-12 00:17:10', '2021-05-12 00:17:10', NULL, '', 'menu', 7, 0, 0, 'ant-design:appstore-twotone', '', '菜单管理', '/system/menu/index', 1, 3, 1, '/admin/menu', 0, 0, 2, 1);
+INSERT INTO `sys_menu` VALUES (10, '2021-05-10 03:34:28', '2021-05-10 03:34:28', NULL, '', 'del', 6, 0, 0, NULL, '', '删除角色', '', 2, 4, 1, '/admin/role/del', 0, 0, 3, 4);
+INSERT INTO `sys_menu` VALUES (11, '2021-05-10 15:17:22', '2021-05-10 15:17:22', NULL, '', 'edit', 4, 0, 0, NULL, '', '编辑角色', '', 2, 4, 1, '/admin/role/edit', 0, 0, 3, 3);
+INSERT INTO `sys_menu` VALUES (26, '2021-05-10 03:35:44', '2021-05-10 03:35:44', NULL, '', 'edit', 3, 0, 0, NULL, '', '编辑菜单', '', 2, 8, 1, '/admin/menu/edit', 1, 0, 3, 3);
+INSERT INTO `sys_menu` VALUES (32, '2021-05-10 03:35:51', '2021-05-10 03:35:51', NULL, '', 'del', 6, 0, 0, NULL, '', '删除菜单', '', 2, 8, 1, '/admin/menu/del', 1, 0, 3, 4);
+INSERT INTO `sys_menu` VALUES (35, '2021-05-31 02:03:02', '2021-05-31 02:03:02', NULL, '', 'dept', 2, 0, 0, 'ant-design:apartment-outlined', '', '部门管理', '/system/dept/index', 1, 3, 1, '/admin/dept', 1, 0, 2, 1);
+INSERT INTO `sys_menu` VALUES (36, '2021-05-12 00:17:40', '2021-05-12 00:17:40', NULL, '', 'password', 8, 0, 0, 'ant-design:lock-outlined', '', '修改密码', '/system/password/index', 1, 3, 1, '/admin/password', 1, 0, 2, 2);
+INSERT INTO `sys_menu` VALUES (37, '2021-05-11 20:52:26', '2021-05-11 20:52:26', NULL, '', 'edit', 2, 0, 0, NULL, '', '编辑部门', '', 2, 35, 1, '/admin/dept/edit', 1, 0, 3, 3);
+INSERT INTO `sys_menu` VALUES (38, '2021-05-10 03:38:38', '2021-05-10 03:38:38', NULL, '', 'edit', 4, 0, 0, NULL, '', '编辑账号', '', 2, 5, 1, '/admin/user/edit', 1, 0, 3, 3);
+INSERT INTO `sys_menu` VALUES (40, '2021-05-10 03:38:48', '2021-05-10 03:38:48', NULL, '', 'del', 6, 0, 0, NULL, '', '删除账号', '', 2, 5, 1, '/admin/user/del', 1, 0, 3, 4);
+INSERT INTO `sys_menu` VALUES (42, '2021-05-11 22:38:46', '2021-05-11 22:38:46', NULL, '', 'log', 7, 0, 0, 'ant-design:read-filled', '', '日志管理', '/system/log/index', 1, 3, 1, '/admin/log', 1, 0, 2, 1);
+INSERT INTO `sys_menu` VALUES (51, '2021-05-11 21:01:46', '2021-05-11 21:01:46', NULL, '', 'add', 2, 0, 0, NULL, '', '新增菜单', '', 2, 8, 1, '/admin/menu/add', 1, 0, 3, 2);
+INSERT INTO `sys_menu` VALUES (52, '2021-05-10 15:05:41', '2021-05-10 15:05:41', NULL, '', 'add', 3, 0, 0, NULL, '', '新增部门', '', 2, 35, 1, '/admin/dept/add', 1, 0, 3, 2);
+INSERT INTO `sys_menu` VALUES (53, '2021-05-10 15:33:55', '2021-05-10 15:33:55', NULL, '', 'add', 2, 0, 0, NULL, '', '新增角色', '', 2, 4, 1, '/admin/role/add', 1, 0, 3, 2);
+INSERT INTO `sys_menu` VALUES (54, '2021-05-11 21:01:30', '2021-05-11 21:01:30', NULL, '', 'add', 2, 0, 0, NULL, '', '新增账号', '', 2, 5, 1, '/admin/user/add', 1, 0, 3, 2);
+INSERT INTO `sys_menu` VALUES (55, '2021-05-11 20:52:38', '2021-05-11 20:52:38', NULL, '', 'del', 5, 0, 0, NULL, '', '删除部门', '', 2, 35, 1, '/admin/dept/del', 1, 0, 3, 4);
+INSERT INTO `sys_menu` VALUES (59, '2021-05-11 20:59:48', '2021-05-11 20:59:48', NULL, '', 'del', 2, 0, 0, NULL, '', '删除日志', '', 2, 42, 1, '/admin/log/del', 1, 0, 3, 4);
+INSERT INTO `sys_menu` VALUES (60, '2021-05-11 19:42:49', '2021-05-11 19:42:49', NULL, '', 'del_batch', 2, 0, 0, NULL, '', '批量删除日志', '', 2, 42, 1, '/admin/log/del_batch', 1, 0, 3, 4);
+INSERT INTO `sys_menu` VALUES (61, '2021-05-11 20:57:31', '2021-05-11 20:57:31', NULL, '', '', 1, 0, 0, NULL, '', '部门列表', '', 2, 35, 1, '/admin/dept/list', 1, 0, 3, 1);
+INSERT INTO `sys_menu` VALUES (62, '2021-05-11 20:58:53', '2021-05-11 20:58:53', NULL, '', '', 1, 0, 0, NULL, '', '角色列表', '', 2, 4, 1, '/admin/role/list', 1, 0, 3, 1);
+INSERT INTO `sys_menu` VALUES (63, '2021-05-11 20:59:33', '2021-05-11 20:59:33', NULL, '', '', 1, 0, 0, NULL, '', '日志列表', '', 2, 42, 1, '/admin/log/list', 1, 0, 3, 1);
+INSERT INTO `sys_menu` VALUES (64, '2021-05-11 21:00:41', '2021-05-11 21:00:41', NULL, '', '', 1, 0, 0, NULL, '', '账号列表', '', 2, 5, 1, '/admin/user/list', 1, 0, 3, 1);
+INSERT INTO `sys_menu` VALUES (65, '2021-05-11 21:01:12', '2021-05-11 21:01:12', NULL, '', '', 1, 0, 0, NULL, '', '菜单列表', '', 2, 8, 1, '/admin/menu/list', 1, 0, 3, 1);
 
 -- ----------------------------
 -- Table structure for sys_op_log
@@ -258,7 +253,7 @@ CREATE TABLE `sys_op_log`  (
   `deleted_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_sys_op_log_deleted_at`(`deleted_at`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_op_log
@@ -280,6 +275,25 @@ INSERT INTO `sys_op_log` VALUES (14, '', '3', 'PUT', '', 'chris', '', '/api/syst
 INSERT INTO `sys_op_log` VALUES (15, '', '2', 'POST', '', 'chris', '', '/api/system/user/add', '127.0.0.1', '内部IP', '{\"username\":\"guest\",\"pwd\":\"123456\",\"roleName\":\"56\",\"deptName\":\"1\",\"phone\":\"23111\",\"email\":\"2501170033@qq.com\"}', 1, '2021-05-12 01:28:48', '', 'chris', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', 'Operation log', '5.0156ms', '2021-05-12 01:28:48', NULL);
 INSERT INTO `sys_op_log` VALUES (16, '', '3', 'PUT', '', 'chris', '', '/api/system/dept/edit', '127.0.0.1', '内部IP', '{\"id\":\"7\",\"pid\":\"0\",\"deptName\":\"华南分部\",\"parentDept\":\"顶级目录\",\"orderNo\":2,\"status\":\"1\",\"remark\":\"\"}', 1, '2021-05-12 01:41:05', '', 'chris', '', 'Chrome 89.0.4389.82', 'Android 6.0', 'Linux', 'Operation log', '3.9975ms', '2021-05-12 01:41:05', NULL);
 INSERT INTO `sys_op_log` VALUES (17, '', '3', 'PUT', '', 'chris', '', '/api/system/dept/edit', '127.0.0.1', '内部IP', '{\"id\":\"7\",\"pid\":\"0\",\"deptName\":\"华南分部\",\"parentDept\":\"顶级目录\",\"orderNo\":3,\"status\":\"1\",\"remark\":\"\"}', 1, '2021-05-12 01:41:12', '', 'chris', '', 'Chrome 89.0.4389.82', 'Android 6.0', 'Linux', 'Operation log', '4.012ms', '2021-05-12 01:41:12', NULL);
+INSERT INTO `sys_op_log` VALUES (18, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:42:40', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 01:42:40', NULL);
+INSERT INTO `sys_op_log` VALUES (19, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:42:45', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', 'captcha verify error!', '1ns', '2021-05-31 01:42:45', NULL);
+INSERT INTO `sys_op_log` VALUES (20, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:43:08', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 01:43:08', NULL);
+INSERT INTO `sys_op_log` VALUES (21, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:43:34', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 5.0', 'Linux', 'captcha verify error!', '1ns', '2021-05-31 01:43:34', NULL);
+INSERT INTO `sys_op_log` VALUES (22, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:43:50', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:43:50', NULL);
+INSERT INTO `sys_op_log` VALUES (23, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:45:13', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:45:13', NULL);
+INSERT INTO `sys_op_log` VALUES (24, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:45:31', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:45:31', NULL);
+INSERT INTO `sys_op_log` VALUES (25, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:47:30', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:47:30', NULL);
+INSERT INTO `sys_op_log` VALUES (26, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:48:53', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:48:53', NULL);
+INSERT INTO `sys_op_log` VALUES (27, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:49:48', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:49:48', NULL);
+INSERT INTO `sys_op_log` VALUES (28, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:53:22', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:53:22', NULL);
+INSERT INTO `sys_op_log` VALUES (29, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:57:09', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', '登录成功', '1ns', '2021-05-31 01:57:09', NULL);
+INSERT INTO `sys_op_log` VALUES (30, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 01:59:33', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 01:59:33', NULL);
+INSERT INTO `sys_op_log` VALUES (31, '', '3', 'PUT', '', 'guest', '', '/api/admin/role/edit', '::1', '内部IP', '{\"id\":\"56\",\"roleName\":\"测试账号\",\"roleValue\":\"test\",\"status\":\"1\",\"remark\":\"\",\"menu\":[\"1\",\"2\",\"36\",\"61\",\"62\",\"63\",\"64\",\"65\"]}', 1, '2021-05-31 02:01:29', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', 'Operation log', '55.5312ms', '2021-05-31 02:01:29', NULL);
+INSERT INTO `sys_op_log` VALUES (32, '', '3', 'PUT', '', 'guest', '', '/api/admin/menu/edit', '::1', '内部IP', '{\"type\":\"0\",\"id\":\"3\",\"pid\":\"0\",\"menuName\":\"系统管理\",\"pMenuName\":\"顶级目录\",\"orderNo\":3,\"icon\":\"ant-design:appstore-filled\",\"apiPath\":\"/system\",\"apiMethod\":\"1\",\"component\":\"LAYOUT\",\"path\":\"/admin\",\"isExt\":\"0\",\"keepalive\":\"0\",\"status\":\"1\"}', 1, '2021-05-31 02:02:21', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', 'Operation log', '4.9978ms', '2021-05-31 02:02:21', NULL);
+INSERT INTO `sys_op_log` VALUES (33, '', '3', 'PUT', '', 'guest', '', '/api/admin/menu/edit', '::1', '内部IP', '{\"type\":\"0\",\"id\":\"3\",\"pid\":\"0\",\"menuName\":\"系统管理\",\"pMenuName\":\"顶级目录\",\"orderNo\":3,\"icon\":\"ant-design:appstore-filled\",\"apiPath\":\"/system\",\"apiMethod\":\"1\",\"component\":\"LAYOUT\",\"path\":\"/admin\",\"isExt\":\"0\",\"keepalive\":\"0\",\"status\":\"1\"}', 1, '2021-05-31 02:02:32', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', 'Operation log', '4.9988ms', '2021-05-31 02:02:32', NULL);
+INSERT INTO `sys_op_log` VALUES (34, '', '3', 'PUT', '', 'guest', '', '/api/admin/menu/edit', '::1', '内部IP', '{\"type\":\"1\",\"id\":\"35\",\"pid\":\"3\",\"menuName\":\"部门管理\",\"pMenuName\":\"系统管理\",\"orderNo\":2,\"icon\":\"ant-design:apartment-outlined\",\"apiPath\":\"/system/dept\",\"apiMethod\":\"1\",\"component\":\"/admin/dept/index\",\"path\":\"dept\",\"isExt\":\"0\",\"keepalive\":\"1\",\"status\":\"1\"}', 1, '2021-05-31 02:03:02', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', 'Operation log', '4.9853ms', '2021-05-31 02:03:02', NULL);
+INSERT INTO `sys_op_log` VALUES (35, '', '3', 'PUT', '', 'guest', '', '/api/admin/menu/edit', '::1', '内部IP', '{\"type\":\"0\",\"id\":\"1\",\"pid\":\"0\",\"menuName\":\"仪表大盘\",\"pMenuName\":\"顶级目录\",\"orderNo\":0,\"icon\":\"ant-design:code-outlined\",\"apiPath\":\"/dashboard\",\"apiMethod\":\"1\",\"component\":\"LAYOUT\",\"path\":\"/dashboard\",\"isExt\":\"0\",\"keepalive\":\"1\",\"status\":\"1\"}', 1, '2021-05-31 02:10:55', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', 'Operation log', '8.9943ms', '2021-05-31 02:10:55', NULL);
+INSERT INTO `sys_op_log` VALUES (36, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 02:14:41', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 02:14:41', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -305,7 +319,7 @@ CREATE TABLE `sys_role`  (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (55, '超级管理员', 'super', '', '1', 0, '2021-05-12 01:26:47', '2021-05-12 01:26:47', NULL);
-INSERT INTO `sys_role` VALUES (56, '测试账号', 'test', '', '1', 0, '2021-05-12 01:27:52', '2021-05-12 01:27:52', NULL);
+INSERT INTO `sys_role` VALUES (56, '测试账号', 'test', '', '1', 0, '2021-05-12 01:27:52', '2021-05-31 02:01:29', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -315,7 +329,7 @@ CREATE TABLE `sys_role_menu`  (
   `sys_role_id` int(11) NOT NULL,
   `sys_menu_id` int(11) NOT NULL,
   PRIMARY KEY (`sys_role_id`, `sys_menu_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -413,12 +427,12 @@ CREATE TABLE `sys_user`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uix_sys_user_username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'chris', NULL, '7edf620a4a49f509b33e8472e8ca71ca', 'static/upload/avatar/default.png', 55, 1, '2021-05-12 01:28:19', '2021-05-12 01:28:19', 1, '123123', '2501170033@qq.com', NULL);
-INSERT INTO `sys_user` VALUES (2, 'guest', '', '71de42a0f9bf70b948f6627d61f92801', 'static/upload/avatar/default.png', 56, 1, '2021-05-12 01:28:48', '2021-05-12 01:28:48', 1, '23111', '2501170033@qq.com', '');
+INSERT INTO `sys_user` VALUES (1, 'chris', NULL, '19d6e6f9f868a4523c607f5b1c985691', 'static/upload/avatar/default.png', 55, 1, '2021-05-12 01:28:19', '2021-05-12 01:28:19', 1, '123123', '2501170033@qq.com', NULL);
+INSERT INTO `sys_user` VALUES (2, 'guest', '', '19d6e6f9f868a4523c607f5b1c985691', 'static/upload/avatar/default.png', 56, 1, '2021-05-12 01:28:48', '2021-05-12 01:28:48', 1, '23111', '2501170033@qq.com', '');
 
 SET FOREIGN_KEY_CHECKS = 1;

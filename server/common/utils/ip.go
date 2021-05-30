@@ -2,7 +2,7 @@ package utils
 
 import (
 	"encoding/json"
-	"gin-vben-admin/common"
+	"gin-admin/common"
 	"io/ioutil"
 	"net/http"
 )

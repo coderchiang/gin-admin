@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"bytes"
-	"gin-vben-admin/service"
+	"gin-admin/service"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"time"
