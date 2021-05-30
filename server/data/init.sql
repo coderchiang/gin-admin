@@ -11,13 +11,8 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 31/05/2021 02:37:48
+ Date: 31/05/2021 05:23:11
 */
-CREATE DATABASE IF NOT EXISTS gin_admin
-DEFAULT CHARACTER SET utf8mb4
-DEFAULT COLLATE utf8mb4_general_ci;
-
-USE gin_admin;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -84,52 +79,52 @@ INSERT INTO `casbin_rule` VALUES ('p', '49', '/system/log', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '49', '/system/menu', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '49', '/system/user/menu', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '49', '/system/user/info', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/role/edit', 'PUT', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/del', 'DELETE', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/menu/add', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/dept/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/menu', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/role/del', 'DELETE', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/dept/edit', 'PUT', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/add', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/dept/del', 'DELETE', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/log/del_batch', 'DELETE', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/role/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/log/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/dept', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/log/del', 'DELETE', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/role', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/log', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/menu/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/dashboard/analysis', 'PUT', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/menu/edit', 'PUT', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/dashboard', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/menu/del', 'DELETE', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/password', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/dept/add', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/edit', 'PUT', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/role/add', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/menu', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '55', '/system/user/info', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/role/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/log', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/menu', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/dashboard/analysis', 'PUT', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/dept/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/role', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/log/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/password', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/role/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/menu/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/menu', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/dashboard', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/password', 'POST', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/dept', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/user/list', 'GET', '', '', '');
-INSERT INTO `casbin_rule` VALUES ('p', '56', '/system/menu/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/dept/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/dept', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/role', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/user/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/log/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/log', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/user', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/user/menu', 'GET', '', '', '');
 INSERT INTO `casbin_rule` VALUES ('p', '56', '/admin/user/info', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/role/edit', 'PUT', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/dept/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/role/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/dashboard/analysis', 'PUT', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/role/del', 'DELETE', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/log', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/log/del_batch', 'DELETE', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/role', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/menu', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/dept/del', 'DELETE', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/password', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user/add', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/role/add', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user/del', 'DELETE', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/dept/add', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/log/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/menu/del', 'DELETE', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/dept', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/menu/edit', 'PUT', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/dept/edit', 'PUT', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/menu/add', 'POST', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/log/del', 'DELETE', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/dashboard', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/menu/list', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user/edit', 'PUT', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user/menu', 'GET', '', '', '');
+INSERT INTO `casbin_rule` VALUES ('p', '55', '/admin/user/info', 'GET', '', '', '');
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -258,7 +253,7 @@ CREATE TABLE `sys_op_log`  (
   `deleted_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_sys_op_log_deleted_at`(`deleted_at`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_op_log
@@ -299,6 +294,12 @@ INSERT INTO `sys_op_log` VALUES (33, '', '3', 'PUT', '', 'guest', '', '/api/admi
 INSERT INTO `sys_op_log` VALUES (34, '', '3', 'PUT', '', 'guest', '', '/api/admin/menu/edit', '::1', '内部IP', '{\"type\":\"1\",\"id\":\"35\",\"pid\":\"3\",\"menuName\":\"部门管理\",\"pMenuName\":\"系统管理\",\"orderNo\":2,\"icon\":\"ant-design:apartment-outlined\",\"apiPath\":\"/system/dept\",\"apiMethod\":\"1\",\"component\":\"/admin/dept/index\",\"path\":\"dept\",\"isExt\":\"0\",\"keepalive\":\"1\",\"status\":\"1\"}', 1, '2021-05-31 02:03:02', '', 'guest', '', 'Chrome 86.0.4240.198', 'Windows 10', 'Windows', 'Operation log', '4.9853ms', '2021-05-31 02:03:02', NULL);
 INSERT INTO `sys_op_log` VALUES (35, '', '3', 'PUT', '', 'guest', '', '/api/admin/menu/edit', '::1', '内部IP', '{\"type\":\"0\",\"id\":\"1\",\"pid\":\"0\",\"menuName\":\"仪表大盘\",\"pMenuName\":\"顶级目录\",\"orderNo\":0,\"icon\":\"ant-design:code-outlined\",\"apiPath\":\"/dashboard\",\"apiMethod\":\"1\",\"component\":\"LAYOUT\",\"path\":\"/dashboard\",\"isExt\":\"0\",\"keepalive\":\"1\",\"status\":\"1\"}', 1, '2021-05-31 02:10:55', '', 'guest', '', 'Chrome 86.0.4240.198', 'Android 6.0', 'Linux', 'Operation log', '8.9943ms', '2021-05-31 02:10:55', NULL);
 INSERT INTO `sys_op_log` VALUES (36, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 02:14:41', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 02:14:41', NULL);
+INSERT INTO `sys_op_log` VALUES (37, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 05:11:32', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 05:11:32', NULL);
+INSERT INTO `sys_op_log` VALUES (38, '', '2', 'POST', '', 'guest', '', '/api/login', '::1', '内部IP', '', 1, '2021-05-31 05:19:59', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', '登录成功', '1ns', '2021-05-31 05:19:59', NULL);
+INSERT INTO `sys_op_log` VALUES (39, '', '3', 'PUT', '', 'guest', '', '/api/admin/user/edit', '::1', '内部IP', '{\"id\":\"2\",\"username\":\"guest\",\"pwd\":\"123456\",\"role_id\":\"56\",\"roleName\":\"测试账号\",\"deptName\":\"1\",\"phone\":\"23111\",\"email\":\"2501170033@qq.com\",\"remark\":\"\"}', 1, '2021-05-31 05:20:19', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', 'Operation log', '9.9936ms', '2021-05-31 05:20:19', NULL);
+INSERT INTO `sys_op_log` VALUES (40, '', '3', 'PUT', '', 'guest', '', '/api/admin/role/edit', '::1', '内部IP', '{\"id\":\"56\",\"roleName\":\"测试账号\",\"roleValue\":\"test\",\"status\":\"1\",\"remark\":\"\",\"menu\":[\"1\",\"2\",\"36\",\"61\",\"62\",\"63\",\"64\",\"65\"]}', 1, '2021-05-31 05:20:26', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', 'Operation log', '61.9649ms', '2021-05-31 05:20:26', NULL);
+INSERT INTO `sys_op_log` VALUES (41, '', '3', 'PUT', '', 'guest', '', '/api/admin/role/edit', '::1', '内部IP', '{\"id\":\"56\",\"roleName\":\"测试账号\",\"roleValue\":\"test\",\"status\":\"1\",\"remark\":\"\",\"menu\":[\"1\",\"2\",\"36\",\"61\",\"62\",\"63\",\"64\",\"65\"]}', 1, '2021-05-31 05:20:30', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', 'Operation log', '53.9689ms', '2021-05-31 05:20:30', NULL);
+INSERT INTO `sys_op_log` VALUES (42, '', '3', 'PUT', '', 'guest', '', '/api/admin/role/edit', '::1', '内部IP', '{\"id\":\"55\",\"roleName\":\"超级管理员\",\"roleValue\":\"super\",\"status\":\"1\",\"remark\":\"\",\"menu\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"8\",\"10\",\"11\",\"26\",\"32\",\"35\",\"36\",\"37\",\"38\",\"40\",\"42\",\"51\",\"52\",\"53\",\"54\",\"55\",\"59\",\"60\",\"61\",\"62\",\"63\",\"64\",\"65\"]}', 1, '2021-05-31 05:21:34', '', 'guest', '', 'Chrome 89.0.4389.82', 'Windows 10', 'Windows', 'Operation log', '152.581ms', '2021-05-31 05:21:34', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -323,8 +324,8 @@ CREATE TABLE `sys_role`  (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES (55, '超级管理员', 'super', '', '1', 0, '2021-05-12 01:26:47', '2021-05-12 01:26:47', NULL);
-INSERT INTO `sys_role` VALUES (56, '测试账号', 'test', '', '1', 0, '2021-05-12 01:27:52', '2021-05-31 02:01:29', NULL);
+INSERT INTO `sys_role` VALUES (55, '超级管理员', 'super', '', '1', 0, '2021-05-12 01:26:47', '2021-05-31 05:21:33', NULL);
+INSERT INTO `sys_role` VALUES (56, '测试账号', 'test', '', '1', 0, '2021-05-12 01:27:52', '2021-05-31 05:20:30', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -438,6 +439,6 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 'chris', NULL, '19d6e6f9f868a4523c607f5b1c985691', 'static/upload/avatar/default.png', 55, 1, '2021-05-12 01:28:19', '2021-05-12 01:28:19', 1, '123123', '2501170033@qq.com', NULL);
-INSERT INTO `sys_user` VALUES (2, 'guest', '', '19d6e6f9f868a4523c607f5b1c985691', 'static/upload/avatar/default.png', 56, 1, '2021-05-12 01:28:48', '2021-05-12 01:28:48', 1, '23111', '2501170033@qq.com', '');
+INSERT INTO `sys_user` VALUES (2, 'guest', '', '19d6e6f9f868a4523c607f5b1c985691', 'static/upload/avatar/default.png', 56, 1, '2021-05-31 05:20:19', '2021-05-31 05:20:19', 1, '23111', '2501170033@qq.com', '');
 
 SET FOREIGN_KEY_CHECKS = 1;
