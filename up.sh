@@ -5,6 +5,7 @@ baseDir=`echo $PWD`
 serverDir=`echo $baseDir/server`
 webDir=`echo $baseDir/web`
 dataDir=`echo $serverDir/data`
+database=`ginadmin`
 confDir=`echo $serverDir/conf`
 goVersion=`echo "go1.16.4.linux-amd64"`
 nodeVersion=`echo "node-v14.17.0-linux-x64"`
@@ -87,6 +88,8 @@ funcDockerInitMysqlAndRedis(){
     docker rm mysql
     sleep 2
     docker run -p 3306:3306 --name mysql  -v /data/mysql:/var/lib/mysql  -v $dataDir:/docker-entrypoint-initdb.d   -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+    docker exec -it mysql /bin/bash -c "cd docker-entrypoint-initdb.d && mysql -uroot -p123456 $database < init.sql"
+    
     #启动redis
      docker stop redis
     docker rm redis
