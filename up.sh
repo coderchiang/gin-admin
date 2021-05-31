@@ -86,7 +86,6 @@ funcDockerInitMysqlAndRedis(){
     #启动mysql
     docker stop mysql
     docker rm mysql
-    sleep 2
     docker run -p 3306:3306 --name mysql  -v /data/mysql:/var/lib/mysql  -v $dataDir:/docker-entrypoint-initdb.d   -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
     docker exec -it mysql /bin/bash -c "cd docker-entrypoint-initdb.d && mysql -uroot -p123456 $database < init.sql"
     
@@ -98,24 +97,18 @@ funcDockerInitMysqlAndRedis(){
   funcStartServer(){
       #start server
     cd  $serverDir
-
-    sleep 2
-    
-    
      command=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
-   if [  "$command" == "" ]
-
-   then
+   if [  "$command" == "" ] then
      nohup ./gin-admin &
      port=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
-	echo -e  'server start  success' 
-   echo "listen port:$port"
+	   echo -e  'server start  success' 
+     echo "listen port:$port"
    else
-   ps -ef |grep gin-admin|grep -v grep|awk '{print $2}'|xargs kill -9
-   nohup ./gin-admin &
-    port2=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
-	echo -e  'server start  success' 
-   echo "listen port:$port2"
+     ps -ef |grep gin-admin|grep -v grep|awk '{print $2}'|xargs kill -9
+     nohup ./gin-admin &
+     portp=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
+	   echo -e  'server start  success' 
+     echo "listen port:$portp"
    fi
    
    
