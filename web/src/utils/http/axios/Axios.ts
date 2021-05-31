@@ -217,6 +217,7 @@ export class VAxios {
         .catch((e: Error) => {
           if (requestCatchHook && isFunction(requestCatchHook)) {
             reject(requestCatchHook(e));
+           
             return;
           }
           reject(e);

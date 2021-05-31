@@ -57,29 +57,31 @@ const transform: AxiosTransform = {
     }
     //鉴权失败，调转到登录页面
     if(code === ResultEnum.AUTHEMPTY){
-
-      if (msg) {
+      router.push(PageEnum.BASE_LOGIN);    
+      setTimeout(() =>{
+        location.reload(); 
         createMessage.error(msg);
-      }
-      router.replace(PageEnum.BASE_LOGIN);
-      return errorResult;
-
+        return errorResult;
+      },300)
+       
     }
     if(code === ResultEnum.AUTHEXPIRE){
-
-      if (msg) {
+      router.push(PageEnum.BASE_LOGIN);    
+      setTimeout(() =>{
+        location.reload(); 
         createMessage.error(msg);
-      }
-      router.replace(PageEnum.BASE_LOGIN);
-      return errorResult;
+        return errorResult;
+      },300)
+     
+         
     }
     if(code === ResultEnum.AUTHERROR){
-
-      if (msg) {
+      router.push(PageEnum.BASE_LOGIN);    
+      setTimeout(() =>{
+        location.reload(); 
         createMessage.error(msg);
-      }
-      router.replace(PageEnum.BASE_LOGIN);
-      return errorResult;
+        return errorResult;
+      },300)
     }
     // 接口请求错误，统一提示错误信息
       if(code%100!==0){
@@ -89,7 +91,6 @@ const transform: AxiosTransform = {
         Promise.reject(new Error(msg));
       } else {
         const msg = t('sys.api.errorMessage');
-        createMessage.error(msg);
         Promise.reject(new Error(msg));
       }
       return errorResult;
