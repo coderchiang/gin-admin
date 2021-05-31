@@ -33,7 +33,8 @@
             ...data.record,
           });
         }
-        const treeData = await getDeptList();
+        const res=await getDeptList()
+        const treeData=res.items
         treeData
         updateSchema({
           field: 'parentDept',
