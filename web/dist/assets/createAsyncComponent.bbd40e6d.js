@@ -1,1 +1,0 @@
-import{bM as e,n as a,bN as n,bO as o}from"./index.0c45daab.js";function s(s,t={}){const{size:i="small",delay:r=100,timeout:l=3e4,loading:d=!1,retry:m=!0}=t;return e({loader:s,loadingComponent:d?a(n,{spinning:!0,size:i},null):void 0,timeout:l,delay:r,onError:m?(e,a,n,o)=>{e.message.match(/fetch/)&&o<=3?a():n()}:o})}export{s as c};
