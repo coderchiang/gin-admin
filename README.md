@@ -24,7 +24,7 @@
 
 ### 1.1 项目介绍
 
-[在线预览](http://2wm.top/)
+[在线预览 http://2wm.top/](http://2wm.top/)
 
 测试用户名：guest
 
@@ -45,20 +45,20 @@
 
 - 使用git克隆本项目
 ```git
-    git clone https://github.com/coderchiang/gin-admin
+git clone https://github.com/coderchiang/gin-admin
 ```
 
 - 进入项目目录
 ```bash
- cd gin-admin
+cd gin-admin
 ```
 - 给一键启动脚本添加权限，并运行一键启动脚本。
 
 ```bash
 # 添加权限
- sudo chmod a+x up.sh
+sudo chmod a+x up.sh
 # 执行启动脚本
- ./up.sh
+./up.sh
 ```
 ## up.sh 包含了项目启动过程所有配置运行脚本，具体逻辑根据需求可以自行注释；您还可以分开进入web端和server分别构建并配置启动项目，具体操作如下。
 
@@ -160,7 +160,7 @@ swag init
 │   ├── resource     (casbin资源目录)
 │   ├── routers      (路由配置目录)
 │   └── service      (服务层目录)
-└── web              (前端目录，采用vue-vben-adminda搭建)
+└── web              (前端目录，采用vue-vben-admin搭建)
     ├── build        (vite目录)
     ├── dist         (构建完成目录)
     ├── mock         (模拟数据目录)
@@ -185,7 +185,7 @@ swag init
 ## 6. 计划任务
 
 - [ ] 导入，导出Excel
-  [ ] 文件上传
+- [ ] 文件上传
 ## 7. 联系方式
 
 ### QQ交流群：1055067008
