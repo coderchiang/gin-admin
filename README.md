@@ -1,8 +1,11 @@
 
 <div align=center>
 <img src="https://img.shields.io/badge/golang-1.16-blue"/>
+<a href="https://github.com/coderchiang/gin-admin">
 <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
+</a>
 <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
+</div>
   
 
 
@@ -189,6 +192,7 @@ swag init
 | QQ 群 |
 |  :---:  |
 | <img src="https://gitee.com/Chris_Chiang/gin-admin/tree/main/server/data/qq.jpg" width="180"/> |
+进入QQ 群，请勿广告
 
 ### 微信交流群
 | 微信 |
