@@ -86,8 +86,8 @@ funcDockerInitMysqlAndRedis(){
     #启动mysql
     docker stop mysql
     docker rm mysql
-    docker run -p 3306:3306 --name mysql  -v /data/mysql:/var/lib/mysql  -v $dataDir:/docker-entrypoint-initdb.d   -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
-    docker exec -it mysql /bin/bash -c "cd docker-entrypoint-initdb.d && mysql -uroot -p123456 ginadmin < init.sql"
+    docker run -p 3306:3306 --name mysql  -v /data/mysql:/var/lib/mysql  /data/mysql/mysqld:/var/run/mysqld  -v $dataDir:/docker-entrypoint-initdb.d   -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+    docker exec -it mysql /bin/bash -c "cd docker-entrypoint-initdb.d && mysql -uroot -p123456 $database < init.sql"
     
     #启动redis
      docker stop redis
