@@ -51,7 +51,7 @@ var (
 	TokenNotValidYet       = errors.New("Token not active yet")
 	TokenMalformed         = errors.New("That's not even a token")
 	TokenInvalid           = errors.New("Couldn't handle this token:")
-	TokenExpireAt        int64  = 10		// 默认过期时间2小时过期
+	TokenExpireAt        int64  = 60*60*2		// 默认过期时间2小时过期
 	Issuer                 = "chrischiang"
 )
 
