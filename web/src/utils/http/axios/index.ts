@@ -88,7 +88,7 @@ const transform: AxiosTransform = {
         createMessage.error(data.msg);
         Promise.reject(new Error(msg));
       } else {
-        const msg = t('sys.app.errorMessage');
+        const msg = t('sys.api.errorMessage');
         createMessage.error(msg);
         Promise.reject(new Error(msg));
       }
@@ -96,9 +96,9 @@ const transform: AxiosTransform = {
     }
     // 登录超时
     if (code === ResultEnum.TIMEOUT) {
-      const timeoutMsg = t('sys.app.timeoutMessage');
+      const timeoutMsg = t('sys.api.timeoutMessage');
       createErrorModal({
-        title: t('sys.app.operationFailed'),
+        title: t('sys.api.operationFailed'),
         content: timeoutMsg,
       });
       Promise.reject(new Error(timeoutMsg));
@@ -169,12 +169,12 @@ const transform: AxiosTransform = {
     const err: string = error?.toString?.() ?? '';
     try {
       if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
-        createMessage.error(t('sys.app.apiTimeoutMessage'));
+        createMessage.error(t('sys.api.apiTimeoutMessage'));
       }
       if (err?.includes('Network Error')) {
         createErrorModal({
-          title: t('sys.app.networkException'),
-          content: t('sys.app.networkExceptionMsg'),
+          title: t('sys.api.networkException'),
+          content: t('sys.api.networkExceptionMsg'),
         });
       }
     } catch (error) {
@@ -225,7 +225,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
 }
 export const defHttp = createAxios();
 
-// other app url
+// other api url
 // export const otherHttp = createAxios({
 //   requestOptions: {
 //     apiUrl: 'xxx',

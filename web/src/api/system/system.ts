@@ -22,36 +22,36 @@ import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
   //user无须授权
-  USER_MENU = '/admin/user/menu',
-  USER_INFO = '/admin/user/info',
+  USER_MENU = '/system/user/menu',
+  USER_INFO = '/system/user/info',
   //user
-  UserList = '/admin/user/list',
-  UserAdd = '/admin/user/add',
-  UserEdit = '/admin/user/edit',
-  UserDel = '/admin/user/del',
+  UserList = '/system/user/list',
+  UserAdd = '/system/user/add',
+  UserEdit = '/system/user/edit',
+  UserDel = '/system/user/del',
   //dept
-  DeptList = '/admin/dept/list',
-  DeptAdd = '/admin/dept/add',
-  DeptEdit = '/admin/dept/edit',
-  DeptDel = '/admin/dept/del',
+  DeptList = '/system/dept/list',
+  DeptAdd = '/system/dept/add',
+  DeptEdit = '/system/dept/edit',
+  DeptDel = '/system/dept/del',
   //menu
-  MenuList = '/admin/menu/list',
-  MenuAdd='/admin/menu/add',
-  MenuEdit = '/admin/menu/edit',
-  MenuDel = '/admin/menu/del',
+  MenuList = '/system/menu/list',
+  MenuAdd='/system/menu/add',
+  MenuEdit = '/system/menu/edit',
+  MenuDel = '/system/menu/del',
   //role
-  RoleList = '/admin/role/list',
-  RoleAdd ='/admin/role/add',
-  RoleEdit ='/admin/role/edit',
-  RoleDel ='/admin/role/del',
-  //GetAllRoleList = '/admin/getAllRoleList',
+  RoleList = '/system/role/list',
+  RoleAdd ='/system/role/add',
+  RoleEdit ='/system/role/edit',
+  RoleDel ='/system/role/del',
+  //GetAllRoleList = '/system/getAllRoleList',
    //log
-   LogList ='/admin/log/list',
-   LogDel='/admin/log/del',
-   LogDelBatch='/admin/log/del_batch',
+   LogList ='/system/log/list',
+   LogDel='/system/log/del',
+   LogDelBatch='/system/log/del_batch',
 
   //resetpassword
-  ResetPwd='/admin/password'
+  ResetPwd='/system/password'
 }
 
 

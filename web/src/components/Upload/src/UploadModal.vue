@@ -179,7 +179,7 @@
       async function uploadApiByItem(item: FileItem) {
         const { api } = props;
         if (!api || !isFunction(api)) {
-          return warn('upload app must exist and be a function');
+          return warn('upload api must exist and be a function');
         }
         try {
           item.status = UploadResultStatus.UPLOADING;

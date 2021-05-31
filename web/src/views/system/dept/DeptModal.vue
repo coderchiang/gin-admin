@@ -47,7 +47,7 @@
         try {
           const values = await validate();
           setModalProps({ confirmLoading: true });
-          // TODO custom app
+          // TODO custom api
            if (values.id==0||typeof(values.id)==undefined||!values.id){
               var res = await addDept(values);
           }else{

@@ -1,6 +1,6 @@
 import { getCurrentInstance } from 'vue';
 
-// expose public app
+// expose public api
 export function useExpose<T>(apis: T) {
   const instance = getCurrentInstance();
   if (instance) {

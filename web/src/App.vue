@@ -21,7 +21,7 @@
     name: 'App',
     components: { ConfigProvider, AppProvider },
     setup() {
-      // Initialize vuex internal admin configuration
+      // Initialize vuex internal system configuration
       initAppConfigStore();
 
       useTitle();

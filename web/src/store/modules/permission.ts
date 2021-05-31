@@ -20,7 +20,7 @@ import { transformRouteToMenu } from '/@/router/helper/menuHelper';
 import { filter } from '/@/utils/helper/treeHelper';
 
 import { getUserMenu } from '/@/api/system/system';
-//import { getPermCodeByUserId } from '/@/app/sys/user';
+//import { getPermCodeByUserId } from '/@/api/sys/user';
 
 import { useMessage } from '/@/hooks/web/useMessage';
 import { useI18n } from '/@/hooks/web/useI18n';

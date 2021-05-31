@@ -4,29 +4,29 @@ import { t } from '/@/hooks/web/useI18n';
 const menu: MenuModule = {
   orderNo: 2000,
   menu: {
-    name: t('routes.main.admin.menu'),
-    path: '/admin',
+    name: t('routes.main.system.menu'),
+    path: '/system',
     children: [
       {
         path: 'account',
-        name: t('routes.demo.admin.account'),
+        name: t('routes.demo.system.account'),
       },
       {
         path: 'role',
-        name: t('routes.main.admin.role'),
+        name: t('routes.main.system.role'),
       },
       {
         path: 'menu',
-        name: t('routes.demo.admin.menu'),
+        name: t('routes.demo.system.menu'),
       },
       {
         path: 'dept',
-        name: t('routes.demo.admin.dept'),
+        name: t('routes.demo.system.dept'),
       },
 
       {
         path: 'changePassword',
-        name: t('routes.demo.admin.password'),
+        name: t('routes.demo.system.password'),
       },
     ],
   },

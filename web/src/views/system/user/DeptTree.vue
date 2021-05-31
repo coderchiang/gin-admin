@@ -26,7 +26,6 @@
       const treeData = ref<TreeItem[]>([]);
 
       async function fetch() {
-
         const res=await getDeptList()
         treeData.value = ((res.items) as unknown) as TreeItem[];
       }
