@@ -98,7 +98,7 @@ go build
 cd server
 swag init
 ````
-After executing the above command，`docs` will show in `server/`，then open your browser, jump into `http://localhost:8888/swagger/index.html` to see the swagger APIs.
+After executing the above command，`docs` will show in `server/`，then open your browser, jump into `http://localhost/swagger/index.html` to see the swagger APIs.
 
 
 ## 3. Technical selection

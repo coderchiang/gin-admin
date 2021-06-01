@@ -123,7 +123,7 @@ go get -u github.com/swaggo/swag/cmd/swag
 cd server
 swag init
 ````
-执行上面的命令后，server目录下会出现docs文件夹，登录 http://localhost:80/swagger/index.html ，即可查看swagger文档
+执行上面的命令后，server目录下会出现docs文件夹，登录 http://localhost/swagger/index.html ，即可查看swagger文档
 
 
 ## 3. 技术选型
