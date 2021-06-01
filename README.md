@@ -161,7 +161,7 @@ After executing the above command，`docs` will show in `server/`，then open yo
 
 ## 7. Contacts
 ### 7.1 Groups
-#### QQ group: 622360840
+#### QQ group: 1055067008
 | QQ Group |
 |  :---:  |
 | <img src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/qq.png" width="180"/> |
