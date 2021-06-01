@@ -84,9 +84,13 @@ go mod tidy
 # build the server
 go build
 ```
+### 2.3 Initial Configuration Guide && Configuration Guide
 
+- Configuration file[config.yaml](./server/conf/config.yaml)
 
-### 2.3 API docs generation
+- Import sql initialization file (default mysql)[init.sql](./server/data/init.sql)
+
+### 2.4 API docs generation
 
 ````
 cd server
