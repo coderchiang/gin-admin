@@ -111,7 +111,7 @@ After executing the above command，`docs` will show in `server/`，then open yo
 
 ![Architecture diagram]
 <p align="center">
-  <img  src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/gin-admin.png" width="936px" height="491px">
+  <img  src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/gin-admin-en.png" width="936px" height="491px">
 </p>
 
 
