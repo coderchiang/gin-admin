@@ -191,7 +191,7 @@ swag init
 ### QQ交流群：1055067008
 | QQ 群 |
 |  :---:  |
-| <img src="https://gitee.com/Chris_Chiang/gin-admin/tree/main/server/data/qq.jpg" width="180"/> |
+| <img src="https://gitee.com/Chris_Chiang/gin-admin/tree/main/server/data/qq.png" width="180"/> |
 进入QQ 群，请勿广告
 
 ### 微信交流群
