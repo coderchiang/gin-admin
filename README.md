@@ -25,12 +25,6 @@ password：123456
 > It integrates multiple functions, such as JWT authentication, dynamic routing, dynamic menu, casbin authentication, etc. So that you can focus more time on your business Requirements.
 
 
-
-Gin-vue-admin is a full-stack (frontend and backend separation) framework for developers, designers and product managers.
-
-We are excited that you are interested in contributing to gin-vue-admin. Before submitting your contribution though, please make sure to take a moment and read through the following guidelines.
-
-
 ## 2. Getting started
 
 ```
