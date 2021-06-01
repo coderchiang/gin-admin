@@ -45,9 +45,9 @@ cd gin-admin
 - add permission and exec 
 
 ```bash
-# 添加权限
+# add permission
 sudo chmod a+x up.sh
-# 执行启动脚本
+# exec
 ./up.sh
 ```
 ## `up.sh` Contains running scripts for all configurations of the project startup process ,the specific logic can be annotated according to your needs; you can also enter the web and server separately to build and configure the startup project. The specific operations are as follows:

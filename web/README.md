@@ -168,7 +168,3 @@ If you think this project is helpful to you, you can help the author buy a cup o
 ## License
 
 [MIT © Vben-2020](./LICENSE)
-=======
-# go-vben-admin
-go-web-frame
->>>>>>> debce742589de5e484271f113768f76e551f9823

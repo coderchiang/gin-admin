@@ -9,7 +9,7 @@
   
 
 
-简体中文|[English](./README.md) |
+简体中文|[English](./README.md)
 
 [gitee地址:https://gitee.com/Chris_Chiang/gin-admin](https://gitee.com/Chris_Chiang/gin-admin)
 

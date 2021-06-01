@@ -61,7 +61,6 @@ const transform: AxiosTransform = {
       setTimeout(() =>{
         location.reload(); 
         createMessage.error(msg);
-        return errorResult;
       },300)
        
     }
@@ -70,7 +69,6 @@ const transform: AxiosTransform = {
       setTimeout(() =>{
         location.reload(); 
         createMessage.error(msg);
-        return errorResult;
       },300)
      
          
@@ -80,7 +78,6 @@ const transform: AxiosTransform = {
       setTimeout(() =>{
         location.reload(); 
         createMessage.error(msg);
-        return errorResult;
       },300)
     }
     // 接口请求错误，统一提示错误信息
@@ -93,7 +90,6 @@ const transform: AxiosTransform = {
         const msg = t('sys.api.errorMessage');
         Promise.reject(new Error(msg));
       }
-      return errorResult;
     }
     // 登录超时
     if (code === ResultEnum.TIMEOUT) {
@@ -103,7 +99,6 @@ const transform: AxiosTransform = {
         content: timeoutMsg,
       });
       Promise.reject(new Error(timeoutMsg));
-      return errorResult;
     }
     return errorResult;
   },
