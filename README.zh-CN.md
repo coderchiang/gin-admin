@@ -102,7 +102,7 @@ go mod tidy
 go build
 ```
 
-### 2.3 初始配置使用指南&&配置指南
+### 2.3 初始配置使用指南
 
 - 配置选择在[config.yaml](./server/conf/config.yaml)
 - 导入sql初始化文件（默认mysql）[init.sql](./server/data/init.sql)

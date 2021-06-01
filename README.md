@@ -84,7 +84,7 @@ go mod tidy
 # build the server
 go build
 ```
-### 2.3 Initial Configuration Guide && Configuration Guide
+### 2.3 Initial Configuration Guide 
 
 - Configuration file[config.yaml](./server/conf/config.yaml)
 
