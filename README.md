@@ -156,14 +156,40 @@ After executing the above command，`docs` will show in `server/`，then open yo
 - Menu management: User dynamic menu configuration implementation, assigning different menus to different roles.
 - API management: Different users can call different API permissions.
 - Configuration management: The configuration file can be modified in the web page (the test environment does not provide this function).
+## 6. How to contribute
 
-## 6. To-do list
+You are very welcome to join！[Raise an issue](https://github.com/coderchiang/gin-admin/issues/new/choose) Or submit a Pull Request。
+
+**Pull Request:**
+
+1. Fork code!
+2. Create your own branch: `git checkout -b feat/xxxx`
+3. Submit your changes: `git commit -am 'feat(function): add xxxxx'`
+4. Push your branch: `git push origin feat/xxxx`
+5. submit`pull request`
+
+### Git Contribution submission specification
+  - `feat` Add new features
+  - `fix` Fix the problem/BUG
+  - `style` The code style is related and does not affect the running result
+  - `perf` Optimization/performance improvement
+  - `refactor` Refactor
+  - `revert` Undo edit
+  - `test` Test related
+  - `docs` Documentation/notes
+  - `chore` Dependency update/scaffolding configuration modification etc.
+  - `workflow` Workflow improvements
+  - `ci` Continuous integration
+  - `types` Type definition file changes
+  - `wip` In development
+
+## 7. To-do list
 
 - [ ] upload & export Excel
 - [ ] file upload
 
-## 7. Contacts
-### 7.1 Groups
+## 8. Contacts
+### 8.1 Groups
 #### QQ group: 1055067008
 | QQ Group |
 |  :---:  |
@@ -181,11 +207,11 @@ Add WeChat, note "join gin-admin exchange group"
 
 #### [About Us](http://2wm.top/about/)
 
-## 8. Donate
+## 9. Donate
 
 If you find this project useful, you can buy author a glass of juice :tropical_drink: [here](http://2wm.top/about/)
 
-## 9. Commercial considerations
+## 10. Commercial considerations
 
 This project uses the MIT protocol, and the front-end Framework Vben is also based on the MIT protocol. It is a completely open source and free project and can be used without restrictions
 
