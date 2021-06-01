@@ -203,7 +203,7 @@ swag init
 | <img  src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/wechat.png" width="180"/> |
 添加微信，备注"加入gin-admin交流群"
 
-### [关于我们](https://2wm.top/about/)
+### [关于我们](http://2wm.top/about/)
 
 
 ## 8. 商用注意事项
