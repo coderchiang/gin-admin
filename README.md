@@ -141,7 +141,10 @@ swag init
 ## 4. 项目架构
 ### 4.1 系统架构图
 
-![系统架构图](https://gitee.com/Chris_Chiang/gin-admin/tree/main/server/data/gin-admin.png)
+![系统架构图]
+<p align="center">
+  <img  src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/gin-admin.png" width="936px" height="491px">
+</p>
 
 ### 4.2 目录结构
 
@@ -191,13 +194,13 @@ swag init
 ### QQ交流群：1055067008
 | QQ 群 |
 |  :---:  |
-| <img src="https://gitee.com/Chris_Chiang/gin-admin/tree/main/server/data/qq.png" width="180"/> |
+| <img src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/qq.png" width="180"/> |
 进入QQ 群，请勿广告
 
 ### 微信交流群
 | 微信 |
 |  :---:  |
-| <img  src="https://gitee.com/Chris_Chiang/gin-admin/tree/main/server/data/wechat.png" width="180"/> |
+| <img  src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/wechat.png" width="180"/> |
 添加微信，备注"加入gin-admin交流群"
 
 ### [关于我们](https://2wm.top/about/)
