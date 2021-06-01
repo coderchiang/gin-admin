@@ -8,8 +8,8 @@
 </div>
 
 English | [简体中文](./README.md)
-- Web UI Framework:[Vben](https://github.com/anncwb/vue-vben-admin) 
-- Server Framework:[Gin](https://github.com/gin-gonic/gin) 
+- Web UI Framework:[vben](https://github.com/anncwb/vue-vben-admin) 
+- Server Framework:[gin](https://github.com/gin-gonic/gin) 
 
 ## 1. Basic Introduction
 
@@ -23,6 +23,12 @@ password：123456
 
 > Hi! Thank you for choosing gin-admin.gin-admin is a full-stack (frontend and backend separation) framework designed for management system. 
 > It integrates multiple functions, such as JWT authentication, dynamic routing, dynamic menu, casbin authentication, etc. So that you can focus more time on your business Requirements.
+
+
+
+Gin-vue-admin is a full-stack (frontend and backend separation) framework for developers, designers and product managers.
+
+We are excited that you are interested in contributing to gin-vue-admin. Before submitting your contribution though, please make sure to take a moment and read through the following guidelines.
 
 
 ## 2. Getting started
@@ -50,7 +56,7 @@ sudo chmod a+x up.sh
 # 执行启动脚本
 ./up.sh
 ```
-## above all Contains all the configuration ,you can  run scripts of the project startup process, the specific logic can be annotated according to your needs; you can also enter the web and server separately to build and configure the startup project. The specific operations are as follows:
+## `up.sh` Contains running scripts for all configurations of the project startup process ,you can  run scripts of the project startup process, the specific logic can be annotated according to your needs; you can also enter the web and server separately to build and configure the startup project. The specific operations are as follows:
 ### 2.1 Web
 
 ```bash
@@ -86,7 +92,7 @@ go build
 ```
 
 
-#### 2.3API docs generation
+### 2.3 API docs generation
 
 ````
 cd server
