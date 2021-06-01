@@ -169,7 +169,7 @@ Enter the QQ group, please do not advertise
 
 
 
-#### Wechat group: comment "加入gin-vue-admin交流群"
+#### Wechat group: comment "join gin-admin exchange group"
 
 | Wechat |
 |  :---:  |
