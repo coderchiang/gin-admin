@@ -17,7 +17,7 @@
 
 
 # 项目文档
-- 前端UI框架：[Vben](https://github.com/anncwb/vue-vben-admin) 
+- 前端UI框架：[vue-vben-admin](https://github.com/anncwb/vue-vben-admin) 
 - 后台框架：[Gin](https://github.com/gin-gonic/gin) 
 
 ## 1. 基本介绍

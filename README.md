@@ -8,7 +8,7 @@
 </div>
 
 English | [简体中文](./README.zh-CN.md)
-- Web UI Framework:[Vben](https://github.com/anncwb/vue-vben-admin) 
+- Web UI Framework:[vue-vben-admin](https://github.com/anncwb/vue-vben-admin) 
 - Server Framework:[Gin](https://github.com/gin-gonic/gin) 
 
 ## 1. Basic Introduction
