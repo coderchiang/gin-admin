@@ -142,7 +142,6 @@ swag init
 ## 4. 项目架构
 ### 4.1 系统架构图
 
-![系统架构图]
 <p align="center">
   <img  src="https://gitee.com/Chris_Chiang/gin-admin/raw/main/server/data/gin-admin.png" width="936px" height="491px">
 </p>
