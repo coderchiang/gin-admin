@@ -46,7 +46,7 @@ func BatchDeleteLog(c *gin.Context) {
 	}
 	err = service.BatchDeleteOperLog(ids)
 	if err != nil {
-		middleware.ResponseFail(c, 204, "批量删除失败")
+		middleware.ResponseFail(c, 201, "批量删除失败")
 		common.LOG.Error("批量删除失败",zap.Any("err", err))
 		return
 	}
@@ -65,7 +65,7 @@ func DeleteLog(c *gin.Context)  {
 	}
 
 	if err = service.DeleteOperLog(utils.StrToInt(idsStr.ID)); err != nil{
-		middleware.ResponseFail(c, 202, "删除失败")
+		middleware.ResponseFail(c, 201, "删除失败")
 		common.LOG.Error("删除失败",zap.Any("err", err))
 		return
 	}

@@ -1,14 +1,11 @@
 package admin
 
 import (
-	"gin-admin/common"
 	"gin-admin/common/utils"
-	"gin-admin/dao"
 	"gin-admin/dto"
 	"gin-admin/middleware"
 	"gin-admin/service"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 func GetUserMenuByClaims(c *gin.Context) {
 	userInfo:=middleware.GetClaims(c)
@@ -26,35 +23,12 @@ func GetUserMenuByClaims(c *gin.Context) {
 
 
 }
-func UploadAvatarImg(c *gin.Context) {
-	userId, ok := c.GetPostForm("user_id")
-	file, err := c.FormFile("img")
-	if ok && err == nil {
-		filepath := "static/upload/avatar/"+ userId + ".png"
-		if err := c.SaveUploadedFile(file, filepath); err != nil {
-			c.JSON(201, gin.H{"msg": err, "img_path": nil})
-			return
-		}else{
-			// 更新用户头像数据
-			avatarUrl := "/"+ filepath
-			err := common.DB.Model(&dao.SysUser{}).Where("id = ?", userId).Update("avatar_url", avatarUrl).Error
-			if err != nil {
-				c.JSON(202, gin.H{"msg": err, "img_path": nil})
-			}else {
-				c.JSON(http.StatusOK, gin.H{"msg": nil, "img_path": avatarUrl})
-			}
-			return
-		}
-	}else{
-		c.JSON(203, gin.H{"msg": err, "img_path": nil})
-	}
-	return
-}
+
 
 func ResetPwd(c *gin.Context)  {
 	var pwdForm dto.PassWord
 	if err := c.ShouldBindJSON(&pwdForm); err!= nil {
-		c.JSON(201, gin.H{"msg": "接收数据错误"})
+		middleware.ResponseFail(c, 202, err.Error())
 		return
 	}
 	err1 := service.ResetPassword(pwdForm)

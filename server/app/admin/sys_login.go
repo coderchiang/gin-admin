@@ -23,7 +23,7 @@ func Login(c *gin.Context){
 	if v {
 		user, msg, isPass := service.LoginCheck(loginForm.Username,loginForm.Password)
 		if !isPass {
-			middleware.ResponseFail(c,202,msg)
+			middleware.ResponseFail(c,201,msg)
 			service.CreatOpLog(c, loginForm.Username,time.Duration(1),msg)
 		}else {
             //用户返回值
@@ -37,7 +37,7 @@ func Login(c *gin.Context){
 			res.Token =token
 
 			if !ok {
-				middleware.ResponseFail(c,202,msg)
+				middleware.ResponseFail(c,201,msg)
 				service.CreatOpLog(c, loginForm.Username,time.Duration(1),msg)
 
 			}else {

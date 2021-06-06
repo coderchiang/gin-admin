@@ -18,7 +18,7 @@ func GetMenuTreeAll(c *gin.Context) {
 		}
 	menus, _, err := service.GetMenuTree(q)
 	if err != nil {
-		middleware.ResponseFail(c,202,err.Error())
+		middleware.ResponseFail(c,201,err.Error())
 	} else {
 		middleware.ResponseSucc(c,"获取全部菜单成功",menus)
 	}
@@ -34,7 +34,7 @@ func CreatMenu(c *gin.Context) {
 	}
 	err = service.SaveMenu(&menu)
 	if err != nil {
-		middleware.ResponseFail(c,202,err.Error())
+		middleware.ResponseFail(c,201,err.Error())
 	} else {
 		middleware.ResponseSucc(c,"添加菜单成功", true)
 		return

@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-//拦截器
+// CasbinHandler 拦截器
 func CasbinHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		user:=GetClaims(c)

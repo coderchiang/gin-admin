@@ -61,7 +61,7 @@ const transform: AxiosTransform = {
       setTimeout(() =>{
         location.reload(); 
         createMessage.error(msg);
-      },300)
+      },500)
        
     }
     if(code === ResultEnum.AUTHEXPIRE){
@@ -69,7 +69,7 @@ const transform: AxiosTransform = {
       setTimeout(() =>{
         location.reload(); 
         createMessage.error(msg);
-      },300)
+      },500)
      
          
     }
@@ -78,7 +78,7 @@ const transform: AxiosTransform = {
       setTimeout(() =>{
         location.reload(); 
         createMessage.error(msg);
-      },300)
+      },500)
     }
     // 接口请求错误，统一提示错误信息
       if(code%100!==0){

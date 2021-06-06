@@ -17,7 +17,7 @@ type QuerySysOpLog struct {
 type SysOpLog struct {
 	ID     string            `form:"id" json:"id"`
 	RequestMethod string    `json:"method"` //请求方式
-	OperatorType  string    `json:"type""`  //操作类型
+	OperatorType  string    `json:"type"`  //操作类型
 	OperName      string    `json:"operName" `      //操作者
 	OperUrl       string    `json:"operUrl"`       //访问地址
 	OperIp        string    `json:"operIp" `        //客户端ip

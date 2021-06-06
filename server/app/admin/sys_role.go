@@ -59,7 +59,7 @@ func UpdateRole(c *gin.Context)  {
 
 		err := service.SaveRole(role)
 		if err!=nil {
-			middleware.ResponseFail(c,203,err.Error())
+			middleware.ResponseFail(c,201,err.Error())
 			return
 		}else {
 			middleware.ResponseSucc(c, "修改角色成功",true)
