@@ -97,6 +97,7 @@ funcDockerInitMysqlAndRedis(){
 }
   funcStartServer(){
       #start server
+    # shellcheck disable=SC2164
     cd  $serverDir
      command=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
    if [  "$command" == "" ]; then
