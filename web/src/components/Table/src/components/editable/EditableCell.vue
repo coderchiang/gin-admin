@@ -13,6 +13,7 @@
         :popoverVisible="getRuleVisible"
         :rule="getRule"
         :ruleMessage="ruleMessage"
+        :class="getWrapperClass"
         size="small"
         ref="elRef"
         @change="handleChange"
@@ -60,14 +61,14 @@
       },
       column: {
         type: Object as PropType<BasicColumn>,
-        default: {},
+        default: () => ({}),
       },
       index: propTypes.number,
     },
     setup(props) {
       const table = useTableContext();
       const isEdit = ref(false);
-      const elRef = ref<any>(null);
+      const elRef = ref();
       const ruleVisible = ref(false);
       const ruleMessage = ref('');
       const optionsRef = ref<LabelValueOptions>([]);
@@ -131,16 +132,19 @@
         return option?.label ?? value;
       });
 
-      const getWrapperStyle = computed(
-        (): CSSProperties => {
-          if (unref(getIsCheckComp) || unref(getRowEditable)) {
-            return {};
-          }
-          return {
-            width: 'calc(100% - 48px)',
-          };
+      const getWrapperStyle = computed((): CSSProperties => {
+        if (unref(getIsCheckComp) || unref(getRowEditable)) {
+          return {};
         }
-      );
+        return {
+          width: 'calc(100% - 48px)',
+        };
+      });
+
+      const getWrapperClass = computed(() => {
+        const { align = 'center' } = props.column;
+        return `edit-cell-align-${align}`;
+      });
 
       const getRowEditable = computed(() => {
         const { editable } = props.record || {};
@@ -278,6 +282,10 @@
         initCbs('validCbs', handleSubmiRule);
         initCbs('cancelCbs', handleCancel);
 
+        if (props.column.dataIndex) {
+          if (!props.record.editValueRefs) props.record.editValueRefs = {};
+          props.record.editValueRefs[props.column.dataIndex] = currentValueRef;
+        }
         /* eslint-disable  */
         props.record.onCancelEdit = () => {
           isArray(props.record?.cancelCbs) && props.record?.cancelCbs.forEach((fn) => fn());
@@ -317,6 +325,7 @@
         getComponentProps,
         handleOptionsChange,
         getWrapperStyle,
+        getWrapperClass,
         getRowEditable,
         getValues,
         handleEnter,
@@ -327,6 +336,30 @@
 </script>
 <style lang="less">
   @prefix-cls: ~'@{namespace}-editable-cell';
+
+  .edit-cell-align-left {
+    text-align: left;
+
+    input:not(.ant-calendar-picker-input, .ant-time-picker-input) {
+      text-align: left;
+    }
+  }
+
+  .edit-cell-align-center {
+    text-align: center;
+
+    input:not(.ant-calendar-picker-input, .ant-time-picker-input) {
+      text-align: center;
+    }
+  }
+
+  .edit-cell-align-right {
+    text-align: right;
+
+    input:not(.ant-calendar-picker-input, .ant-time-picker-input) {
+      text-align: right;
+    }
+  }
 
   .edit-cell-rule-popover {
     .ant-popover-inner-content {

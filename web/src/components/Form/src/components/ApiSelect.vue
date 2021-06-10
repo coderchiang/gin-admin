@@ -20,12 +20,12 @@
   </Select>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, watchEffect, computed, unref } from 'vue';
+  import { defineComponent, PropType, ref, watchEffect, computed, unref, watch } from 'vue';
   import { Select } from 'ant-design-vue';
   import { isFunction } from '/@/utils/is';
   import { useRuleFormItem } from '/@/hooks/component/useFormItem';
   import { useAttrs } from '/@/hooks/core/useAttrs';
-  import { get } from 'lodash-es';
+  import { get, omit } from 'lodash-es';
 
   import { LoadingOutlined } from '@ant-design/icons-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
@@ -41,7 +41,12 @@
     },
     inheritAttrs: false,
     props: {
-      value: propTypes.string,
+      value: propTypes.oneOfType([
+        propTypes.object,
+        propTypes.number,
+        propTypes.string,
+        propTypes.array,
+      ]),
       numberToString: propTypes.bool,
       api: {
         type: Function as PropType<(arg?: Recordable) => Promise<OptionsItem[]>>,
@@ -50,7 +55,7 @@
       // api params
       params: {
         type: Object as PropType<Recordable>,
-        default: () => {},
+        default: () => ({}),
       },
       // support xxx.xxx.xx
       resultField: propTypes.string.def(''),
@@ -78,6 +83,7 @@
             prev.push({
               label: next[labelField],
               value: numberToString ? `${value}` : value,
+              ...omit(next, [labelField, valueField]),
             });
           }
           return prev;
@@ -87,6 +93,14 @@
       watchEffect(() => {
         props.immediate && fetch();
       });
+
+      watch(
+        () => props.params,
+        () => {
+          !unref(isFirstLoad) && fetch();
+        },
+        { deep: true }
+      );
 
       async function fetch() {
         const api = props.api;

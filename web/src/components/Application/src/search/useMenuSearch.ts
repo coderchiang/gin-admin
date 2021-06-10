@@ -1,17 +1,11 @@
 import type { Menu } from '/@/router/types';
-
 import { ref, onBeforeMount, unref, Ref, nextTick } from 'vue';
-
 import { getMenus } from '/@/router/menus';
-import { KeyCodeEnum } from '/@/enums/keyCodeEnum';
-
 import { cloneDeep } from 'lodash-es';
 import { filter, forEach } from '/@/utils/helper/treeHelper';
-
-import { useDebounce } from '/@/hooks/core/useDebounce';
 import { useGo } from '/@/hooks/web/usePage';
 import { useScrollTo } from '/@/hooks/event/useScrollTo';
-import { useKeyPress } from '/@/hooks/event/useKeyPress';
+import { onKeyStroke, useDebounceFn } from '@vueuse/core';
 import { useI18n } from '/@/hooks/web/useI18n';
 
 export interface SearchResult {
@@ -41,7 +35,7 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
 
   const { t } = useI18n();
   const go = useGo();
-  const [handleSearch] = useDebounce(search, 200);
+  const handleSearch = useDebounceFn(search, 200);
 
   onBeforeMount(async () => {
     const list = await getMenus();
@@ -69,7 +63,6 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
 
   function handlerSearchResult(filterMenu: Menu[], reg: RegExp, parent?: Menu) {
     const ret: SearchResult[] = [];
-
     filterMenu.forEach((item) => {
       const { name, path, icon, children } = item;
       if (reg.test(name) && !children?.length) {
@@ -86,11 +79,13 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     return ret;
   }
 
+  // Activate when the mouse moves to a certain line
   function handleMouseenter(e: any) {
     const index = e.target.dataset.index;
     activeIndex.value = Number(index);
   }
 
+  // Arrow key up
   function handleUp() {
     if (!searchResult.value.length) return;
     activeIndex.value--;
@@ -100,6 +95,7 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     handleScroll();
   }
 
+  // Arrow key down
   function handleDown() {
     if (!searchResult.value.length) return;
     activeIndex.value++;
@@ -109,15 +105,23 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     handleScroll();
   }
 
+  // When the keyboard up and down keys move to an invisible place
+  // the scroll bar needs to scroll automatically
   function handleScroll() {
     const refList = unref(refs);
-    if (!refList || !Array.isArray(refList) || refList.length === 0 || !unref(scrollWrap)) return;
+    if (!refList || !Array.isArray(refList) || refList.length === 0 || !unref(scrollWrap)) {
+      return;
+    }
 
     const index = unref(activeIndex);
     const currentRef = refList[index];
-    if (!currentRef) return;
+    if (!currentRef) {
+      return;
+    }
     const wrapEl = unref(scrollWrap);
-    if (!wrapEl) return;
+    if (!wrapEl) {
+      return;
+    }
     const scrollHeight = currentRef.offsetTop + currentRef.offsetHeight;
     const wrapHeight = wrapEl.offsetHeight;
     const { start } = useScrollTo({
@@ -128,8 +132,11 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     start();
   }
 
+  // enter keyboard event
   async function handleEnter() {
-    if (!searchResult.value.length) return;
+    if (!searchResult.value.length) {
+      return;
+    }
     const result = unref(searchResult);
     const index = unref(activeIndex);
     if (result.length === 0 || index < 0) {
@@ -141,28 +148,19 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     go(to.path);
   }
 
+  // close search modal
   function handleClose() {
     searchResult.value = [];
     emit('close');
   }
 
-  useKeyPress(['enter', 'up', 'down', 'esc'], (events) => {
-    const keyCode = events.keyCode;
-    switch (keyCode) {
-      case KeyCodeEnum.UP:
-        handleUp();
-        break;
-      case KeyCodeEnum.DOWN:
-        handleDown();
-        break;
-      case KeyCodeEnum.ENTER:
-        handleEnter();
-        break;
-      case KeyCodeEnum.ESC:
-        handleClose();
-        break;
-    }
-  });
+  // enter search
+  onKeyStroke('Enter', handleEnter);
+  // Monitor keyboard arrow keys
+  onKeyStroke('ArrowUp', handleUp);
+  onKeyStroke('ArrowDown', handleDown);
+  // esc close
+  onKeyStroke('Escape', handleClose);
 
   return { handleSearch, searchResult, keyword, activeIndex, handleMouseenter, handleEnter };
 }

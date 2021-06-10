@@ -31,7 +31,7 @@
   import { defineComponent } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { delUser, getUserList } from '/@/api/system/system';
+  import { delUser, getUserList } from '/@/api/admin/user';
   import { PageWrapper } from '/@/components/Page';
   import DeptTree from './DeptTree.vue';
 

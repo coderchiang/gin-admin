@@ -8,6 +8,7 @@ import type {
 
 import { ComponentType } from './componentType';
 import { VueNode } from '/@/utils/propTypes';
+import { RoleEnum } from '/@/enums/roleEnum';
 
 export declare type SortOrder = 'ascend' | 'descend';
 
@@ -93,6 +94,7 @@ export interface TableActionType {
   deleteSelectRowByKey: (key: string) => void;
   setPagination: (info: Partial<PaginationProps>) => void;
   setTableData: <T = Recordable>(values: T[]) => void;
+  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void;
   getColumns: (opt?: GetColumnsParams) => BasicColumn[];
   setColumns: (columns: BasicColumn[] | string[]) => void;
   getDataSource: <T = Recordable>() => T[];
@@ -380,6 +382,8 @@ export interface BasicTableProps<T = any> {
    * @param expandedRows
    */
   onExpandedRowsChange?: (expandedRows: string[] | number[]) => void;
+
+  onColumnsChange?: (data: ColumnChangeParam[]) => void;
 }
 
 export type CellFormat =
@@ -421,4 +425,18 @@ export interface BasicColumn extends ColumnProps {
   editRule?: boolean | ((text: string, record: Recordable) => Promise<string>);
   editValueMap?: (value: any) => string;
   onEditRow?: () => void;
+  // 权限编码控制是否显示
+  auth?: RoleEnum | RoleEnum[] | string | string[];
+  // 业务控制是否显示
+  ifShow?: boolean | ((column: BasicColumn) => boolean);
+}
+
+export type ColumnChangeParam = {
+  dataIndex: string;
+  fixed: boolean | 'left' | 'right' | undefined;
+  visible: boolean;
+};
+
+export interface InnerHandlers {
+  onColumnsChange: (data: ColumnChangeParam[]) => void;
 }

@@ -4,17 +4,17 @@
       <div :class="getClass" @click.stop v-if="visible">
         <div :class="`${prefixCls}-content`" v-click-outside="handleClose">
           <div :class="`${prefixCls}-input__wrapper`">
-            <a-input
+            <Input
               :class="`${prefixCls}-input`"
               :placeholder="t('common.searchText')"
+              ref="inputRef"
               allow-clear
               @change="handleSearch"
             >
               <template #prefix>
-                <!-- <Icon icon="ion:search"/> -->
                 <SearchOutlined />
               </template>
-            </a-input>
+            </Input>
             <span :class="`${prefixCls}-cancel`" @click="handleClose">
               {{ t('common.cancelText') }}
             </span>
@@ -57,52 +57,43 @@
   </Teleport>
 </template>
 <script lang="ts">
-  import { defineComponent, computed, unref, ref } from 'vue';
-
+  import { defineComponent, computed, unref, ref, watch, nextTick } from 'vue';
   import { SearchOutlined } from '@ant-design/icons-vue';
   import { Input } from 'ant-design-vue';
   import AppSearchFooter from './AppSearchFooter.vue';
   import Icon from '/@/components/Icon';
-
   import clickOutside from '/@/directives/clickOutside';
-
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useRefs } from '/@/hooks/core/useRefs';
   import { useMenuSearch } from './useMenuSearch';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useAppInject } from '/@/hooks/web/useAppInject';
 
-  import { propTypes } from '/@/utils/propTypes';
+  const props = {
+    visible: { type: Boolean },
+  };
 
   export default defineComponent({
     name: 'AppSearchModal',
-    components: { Icon, SearchOutlined, AppSearchFooter, [Input.name]: Input },
+    components: { Icon, SearchOutlined, AppSearchFooter, Input },
     directives: {
       clickOutside,
     },
-    props: {
-      visible: propTypes.bool,
-    },
+    props,
     emits: ['close'],
-    setup(_, { emit }) {
+    setup(props, { emit }) {
       const scrollWrap = ref<ElRef>(null);
-      const { prefixCls } = useDesign('app-search-modal');
+      const inputRef = ref<Nullable<HTMLElement>>(null);
+
       const { t } = useI18n();
+      const { prefixCls } = useDesign('app-search-modal');
       const [refs, setRefs] = useRefs();
       const { getIsMobile } = useAppInject();
 
-      const {
-        handleSearch,
-        searchResult,
-        keyword,
-        activeIndex,
-        handleEnter,
-        handleMouseenter,
-      } = useMenuSearch(refs, scrollWrap, emit);
+      const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } =
+        useMenuSearch(refs, scrollWrap, emit);
 
-      const getIsNotData = computed(() => {
-        return !keyword || unref(searchResult).length === 0;
-      });
+      const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0);
 
       const getClass = computed(() => {
         return [
@@ -112,6 +103,16 @@
           },
         ];
       });
+
+      watch(
+        () => props.visible,
+        (visible: boolean) => {
+          visible &&
+            nextTick(() => {
+              unref(inputRef)?.focus();
+            });
+        }
+      );
 
       function handleClose() {
         searchResult.value = [];
@@ -131,6 +132,7 @@
         scrollWrap,
         handleMouseenter,
         handleClose,
+        inputRef,
       };
     },
   });
@@ -147,7 +149,7 @@
     width: 100%;
     height: 100%;
     padding-top: 50px;
-    background: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.25);
     justify-content: center;
 
     &--mobile {
@@ -190,12 +192,10 @@
     &-content {
       position: relative;
       width: 632px;
-      // padding: 14px;
       margin: 0 auto auto auto;
-      background: #f5f6f7;
+      background-color: @component-background;
       border-radius: 16px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      // box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5), 0 3px 8px 0 #555a64;
       flex-direction: column;
     }
 
@@ -253,8 +253,7 @@
         font-size: 14px;
         color: @text-color-base;
         cursor: pointer;
-        // background: @primary-color;
-        background: #fff;
+        background-color: @component-background;
         border-radius: 4px;
         box-shadow: 0 1px 3px 0 #d4d9e1;
         align-items: center;
@@ -267,7 +266,7 @@
 
         &--active {
           color: #fff;
-          background: @primary-color;
+          background-color: @primary-color;
 
           .@{prefix-cls}-list__item-enter {
             opacity: 1;

@@ -28,7 +28,7 @@
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { getLogList,delLog,delBatchLog } from '/@/api/system/system';
+  import { getLogList,delLog,delBatchLog } from '/@/api/admin/log';
 
   //import RoleDrawer from './RoleDrawer.vue';
 
@@ -87,20 +87,22 @@
           }
       }
 
+       async function handleBetchDelete(){
+         ()=>{
+          delBatchLog({ids:getSelectRowKeys()});
+           setTimeout(() =>{
+           reload();
+         },200);
+      
+      } 
+       }
+
  async function handleConfirm(type: 'warning' | 'error' | 'success' | 'info') {
         createConfirm({
           iconType: type,
           title: '注意',
           content: '您打算批量删除数据库日志吗？',
-           onOk:()=>{
-          const res=delBatchLog({ids:getSelectRowKeys()})
-          if(res){
-           setTimeout(() =>{
-           reload();
-         },200);
-          }
-          },
-
+           onOk:handleBetchDelete,
         });
 
 

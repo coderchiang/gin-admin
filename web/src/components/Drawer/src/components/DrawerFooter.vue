@@ -43,15 +43,13 @@
     setup(props, { emit }) {
       const { prefixCls } = useDesign('basic-drawer-footer');
 
-      const getStyle = computed(
-        (): CSSProperties => {
-          const heightStr = `${props.height}`;
-          return {
-            height: heightStr,
-            lineHeight: heightStr,
-          };
-        }
-      );
+      const getStyle = computed((): CSSProperties => {
+        const heightStr = `${props.height}`;
+        return {
+          height: heightStr,
+          lineHeight: heightStr,
+        };
+      });
 
       function handleOk() {
         emit('ok');
@@ -74,7 +72,7 @@
     width: 100%;
     padding: 0 12px 0 20px;
     text-align: right;
-    background: #fff;
+    background-color: @component-background;
     border-top: 1px solid @border-color-base;
 
     > * {

@@ -47,6 +47,7 @@
       const { currentRoute } = useRouter();
       const { prefixCls } = useDesign('layout-breadcrumb');
       const { getShowBreadCrumbIcon } = useRootSetting();
+      const go = useGo();
 
       const { t } = useI18n();
       watchEffect(async () => {
@@ -70,10 +71,10 @@
         const breadcrumbList = filterItem(matched);
 
         if (currentRoute.value.meta?.currentActiveMenu) {
-          breadcrumbList.push(({
+          breadcrumbList.push({
             ...currentRoute.value,
             name: currentRoute.value.meta?.title || currentRoute.value.name,
-          } as unknown) as RouteLocationMatched);
+          } as unknown as RouteLocationMatched);
         }
         routes.value = breadcrumbList;
       });
@@ -122,7 +123,6 @@
           return;
         }
 
-        const go = useGo();
         if (redirect && isString(redirect)) {
           go(redirect);
         } else {

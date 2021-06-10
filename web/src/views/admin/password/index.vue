@@ -13,9 +13,9 @@
   import { defineComponent } from 'vue';
   import { PageWrapper } from '/@/components/Page';
   import { BasicForm, useForm } from '/@/components/Form';
-  import router from '/@/router';
-  import { userStore } from '/@/store/modules/user';
-   import { resetPwd } from '/@/api/system/system';
+  import { router } from '/@/router';
+import { useUserStore } from '/@/store/modules/user';
+   import { resetPwd } from '/@/api/admin/user';
   import { PageEnum } from '/@/enums/pageEnum';
   import { formSchema } from './pwd.data';
   export default defineComponent({
@@ -28,11 +28,12 @@
         showActionButtonGroup: false,
         schemas: formSchema,
       });
-
+    
       async function handleSubmit() {
         try {
+          const userStore = useUserStore();
           const values = await validate();
-          const { username } = userStore.getUserInfoState || {};
+          const { username } = userStore.getUserInfo || {};
 
           const { passwordOld, passwordNew } = values;
           const data={

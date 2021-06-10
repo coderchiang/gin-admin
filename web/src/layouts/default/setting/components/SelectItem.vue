@@ -25,7 +25,6 @@
     props: {
       event: {
         type: Number as PropType<HandlerEnum>,
-        default: () => {},
       },
       disabled: {
         type: Boolean,
@@ -41,7 +40,7 @@
       },
       options: {
         type: Array as PropType<LabelValueOptions>,
-        default: [],
+        default: () => [],
       },
     },
     setup(props) {

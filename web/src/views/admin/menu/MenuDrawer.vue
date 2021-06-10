@@ -16,8 +16,8 @@
   import { formSchema } from './menu.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
 
-  import { getMenuList } from '/@/api/system/system';
-  import { editMenu ,addMenu } from '/@/api/system/system';
+  import { getMenuList } from '/@/api/admin/menu';
+  import { editMenu ,addMenu } from '/@/api/admin/menu';
 
   export default defineComponent({
     name: 'MenuDrawer',

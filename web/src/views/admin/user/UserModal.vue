@@ -8,7 +8,8 @@
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { userFormSchema } from './user.data';
-  import { getDeptList,editUser,addUser} from '/@/api/system/system';
+  import { editUser,addUser } from '/@/api/admin/user';
+  import { getDeptList } from '/@/api/admin/dept';
 
   export default defineComponent({
     name: 'AccountModal',

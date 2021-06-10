@@ -19,7 +19,6 @@
     "lib": ["dom", "esnext"],
     "types": ["vite/client"],
     "typeRoots": ["./node_modules/@types/", "./types"],
-    "incremental": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "paths": {
@@ -36,7 +35,8 @@
     "types/**/*.ts",
     "build/**/*.ts",
     "build/**/*.d.ts",
-    "mock/**/*.ts"
+    "mock/**/*.ts",
+    "vite.config.ts"
   ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

@@ -49,6 +49,7 @@
         getAccordion,
         getIsHorizontal,
         getIsSidebarType,
+        getSplit,
       } = useMenuSetting();
       const { getShowLogo } = useRootSetting();
 
@@ -75,13 +76,11 @@
         );
       });
 
-      const getWrapperStyle = computed(
-        (): CSSProperties => {
-          return {
-            height: `calc(100% - ${unref(getIsShowLogo) ? '48px' : '0px'})`,
-          };
-        }
-      );
+      const getWrapperStyle = computed((): CSSProperties => {
+        return {
+          height: `calc(100% - ${unref(getIsShowLogo) ? '48px' : '0px'})`,
+        };
+      });
 
       const getLogoClass = computed(() => {
         return [
@@ -144,7 +143,7 @@
         // console.log(menus);
         if (!menus || !menus.length) return null;
         return !props.isHorizontal ? (
-          <SimpleMenu {...menuProps} items={menus} />
+          <SimpleMenu {...menuProps} isSplitMenu={unref(getSplit)} items={menus} />
         ) : (
           <BasicMenu
             {...menuProps}

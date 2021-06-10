@@ -31,7 +31,7 @@
         v-if="showAdvancedButton && !hideAdvanceBtn"
       >
         {{ isAdvanced ? t('component.form.putAway') : t('component.form.unfold') }}
-        <BasicArrow class="ml-1" :expand="!isAdvanced" top />
+        <BasicArrow class="ml-1" :expand="!isAdvanced" up />
       </Button>
       <slot name="advanceAfter"></slot>
     </FormItem>
@@ -67,15 +67,15 @@
       showAdvancedButton: propTypes.bool.def(true),
       resetButtonOptions: {
         type: Object as PropType<ButtonOptions>,
-        default: {},
+        default: () => ({}),
       },
       submitButtonOptions: {
         type: Object as PropType<ButtonOptions>,
-        default: {},
+        default: () => ({}),
       },
       actionColOptions: {
         type: Object as PropType<Partial<ColEx>>,
-        default: {},
+        default: () => ({}),
       },
       actionSpan: propTypes.number.def(6),
       isAdvanced: propTypes.bool,
@@ -99,16 +99,14 @@
         return actionColOpt;
       });
 
-      const getResetBtnOptions = computed(
-        (): ButtonOptions => {
-          return Object.assign(
-            {
-              text: t('common.resetText'),
-            },
-            props.resetButtonOptions
-          );
-        }
-      );
+      const getResetBtnOptions = computed((): ButtonOptions => {
+        return Object.assign(
+          {
+            text: t('common.resetText'),
+          },
+          props.resetButtonOptions
+        );
+      });
 
       const getSubmitBtnOptions = computed(() => {
         return Object.assign(

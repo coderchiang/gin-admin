@@ -15,9 +15,7 @@ type UseTableMethod = TableActionType & {
   getForm: () => FormActionType;
 };
 
-export function useTable(
-  tableProps?: Props
-): [
+export function useTable(tableProps?: Props): [
   (instance: TableActionType, formInstance: UseTableMethod) => void,
   TableActionType & {
     getForm: () => FormActionType;
@@ -83,7 +81,7 @@ export function useTable(
       getTableInstance().setLoading(loading);
     },
     getDataSource: () => {
-      return toRaw(getTableInstance().getDataSource());
+      return getTableInstance().getDataSource();
     },
     getColumns: ({ ignoreIndex = false }: { ignoreIndex?: boolean } = {}) => {
       const columns = getTableInstance().getColumns({ ignoreIndex }) || [];
@@ -122,6 +120,9 @@ export function useTable(
     updateTableData: (index: number, key: string, value: any) => {
       return getTableInstance().updateTableData(index, key, value);
     },
+    updateTableDataRecord: (rowKey: string | number, record: Recordable) => {
+      return getTableInstance().updateTableDataRecord(rowKey, record);
+    },
     getRowSelection: () => {
       return toRaw(getTableInstance().getRowSelection());
     },
@@ -129,7 +130,7 @@ export function useTable(
       return toRaw(getTableInstance().getCacheColumns());
     },
     getForm: () => {
-      return (unref(formRef) as unknown) as FormActionType;
+      return unref(formRef) as unknown as FormActionType;
     },
     setShowPagination: async (show: boolean) => {
       getTableInstance().setShowPagination(show);

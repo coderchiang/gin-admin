@@ -8,7 +8,6 @@ import { AxiosCanceler } from './axiosCancel';
 import { isFunction } from '/@/utils/is';
 import { cloneDeep } from 'lodash-es';
 
-import { errorResult } from './const';
 import { ContentTypeEnum } from '/@/enums/httpEnum';
 import { RequestEnum } from '../../../enums/httpEnum';
 
@@ -155,7 +154,7 @@ export class VAxios {
 
   // support form-data
   supportFormData(config: AxiosRequestConfig) {
-    const headers = this.options?.headers;
+    const headers = config.headers || this.options.headers;
     const contentType = headers?.['Content-Type'] || headers?.['content-type'];
 
     if (
@@ -168,7 +167,7 @@ export class VAxios {
 
     return {
       ...config,
-      data: qs.stringify(config.data),
+      data: qs.stringify(config.data, { arrayFormat: 'brackets' }),
     };
   }
 
@@ -208,16 +207,19 @@ export class VAxios {
         .request<any, AxiosResponse<Result>>(conf)
         .then((res: AxiosResponse<Result>) => {
           if (transformRequestHook && isFunction(transformRequestHook)) {
-            const ret = transformRequestHook(res, opt);
-            ret !== errorResult ? resolve(ret) : reject(new Error('request error!'));
+            try {
+              const ret = transformRequestHook(res, opt);
+              resolve(ret);
+            } catch (err) {
+              reject(err || new Error('request error!'));
+            }
             return;
           }
-          resolve((res as unknown) as Promise<T>);
+          resolve(res as unknown as Promise<T>);
         })
         .catch((e: Error) => {
           if (requestCatchHook && isFunction(requestCatchHook)) {
             reject(requestCatchHook(e));
-           
             return;
           }
           reject(e);

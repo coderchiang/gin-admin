@@ -43,8 +43,9 @@
           :class="`${prefixCls}-submenu-title-icon`"
         />
       </div>
-      <template #content>
-        <div v-bind="getEvents(true)" v-show="opened">
+      <!-- eslint-disable-next-line -->
+      <template #content v-show="opened">
+        <div v-bind="getEvents(true)">
           <ul :class="[prefixCls, `${prefixCls}-${getTheme}`, `${prefixCls}-popup`]">
             <slot></slot>
           </ul>
@@ -78,7 +79,7 @@
   import { isBoolean, isObject } from '/@/utils/is';
   import Mitt from '/@/utils/mitt';
 
-  const DELAY = 250;
+  const DELAY = 200;
   export default defineComponent({
     name: 'SubMenu',
     components: {
@@ -108,9 +109,8 @@
         isChild: false,
       });
 
-      const { getParentSubMenu, getItemStyle, getParentMenu, getParentList } = useMenuItem(
-        instance
-      );
+      const { getParentSubMenu, getItemStyle, getParentMenu, getParentList } =
+        useMenuItem(instance);
 
       const { prefixCls } = useDesign('menu');
 
@@ -147,13 +147,11 @@
       const getCollapse = computed(() => rootProps.collapse);
       const getTheme = computed(() => rootProps.theme);
 
-      const getOverlayStyle = computed(
-        (): CSSProperties => {
-          return {
-            minWidth: '200px',
-          };
-        }
-      );
+      const getOverlayStyle = computed((): CSSProperties => {
+        return {
+          minWidth: '200px',
+        };
+      });
 
       const getIsOpend = computed(() => {
         const name = props.name;
@@ -189,12 +187,18 @@
         const { disabled } = props;
         if (disabled || unref(getCollapse)) return;
         const opened = state.opened;
+
         if (unref(getAccordion)) {
           const { uidList } = getParentList();
           rootMenuEmitter.emit('on-update-opened', {
             opend: false,
             parent: instance?.parent,
             uidList: uidList,
+          });
+        } else {
+          rootMenuEmitter.emit('open-name-change', {
+            name: props.name,
+            opened: !opened,
           });
         }
         state.opened = !opened;

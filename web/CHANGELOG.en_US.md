@@ -1,3 +1,124 @@
+## 2.4.2(2021-06-10)
+
+### ✨ Refactor
+
+- `CountTo` component refactoring
+
+### ✨ Features
+
+- `radioButtonGroup` supports `boolean` value
+- `useModalInner` added `redoModalHeight` to reset the height of `Modal` inside Modal
+- `useECharts` added `getInstance` to obtain instances of `echart`
+- `TableAction` added `stopButtonPropagation` to prevent the action button click event from bubbling
+- `BasicTable` in the row edit mode, you can get or set the value of other editing components in the column
+- The `ApiSelect` component will automatically re-fetch the data after the `params` is changed
+- `TableImg` component improvement
+- `BasicTable` added `columns-change` event to monitor the user to change the sorting, display, and fixed status of columns
+- `Tinymce` supports dynamic modification readonly
+- `BasicTable` added `updateTableDataRecord` method to update the specified row data
+- `useModal` added `closeModal` method to close `Modal`
+
+### 🐛 Bug Fixes
+
+- Fix the problem that `redoModalHeight` cannot reduce the height
+- Fix the problem that the schema data of `BasicForm` does not take effect
+- Fix the problem that multiple tags may cause `KeepAlive` to fail
+- Fix the problem that the default `axios` interceptor cannot handle custom code
+- Fix the height issue of the lock screen pop-up window
+- Fixed the problem that the half-selected state of the `Column Display` checkbox of `BaiscTable` was incorrectly displayed
+- Fixed the problem that the preview list of the `BasicUpload` component could not be displayed in some cases
+- Fix the problem that the `options` setting of ` RadioButtonGroup``disabled ` does not take effect
+- Fix the problem that the button for uploading pictures in the read-only mode of the `Tinymce` component is still available
+- Fix the stuttering problem of `BasicForm` under certain circumstances
+- Fix the problem that "directory" routing does not work
+
+## 2.4.1(2021-06-01)
+
+### ✨ Features
+
+- Add `DatePicker` and `TimePicker` components to editable tables
+- Added `defaultExpandLevel` configuration to `Tree` component
+
+### ⚡ Performance Improvements
+
+-Menu search default focus
+
+### 🐛 Bug Fixes
+
+- Fix known issues of `CodeEditor`
+- Fix the issue of `i18n` console warning
+- Fix the problem that the editable table `align` configuration does not take effect
+- Ensure that `axios` only processes `Object` parameters
+- Fix the failure of the `defaultExpandAll` configuration of the `Tree` component
+- Fix the problem of missing dividing line in `TableAction`
+- Fix the known issues of the table
+- Fix that the lang attribute of HTML will not be set when reloading due to the first loading or changing the language
+
+## 2.4.0 (2021-05-25)
+
+### ✨ Features
+
+-New graphical editor example -New code editor (including Json editor) -Added `JsonPreview`Json data viewing component -The fields of the data column and actionColumn of the table can be controlled according to the authority and business. -Added an example of a permission control table (AuthColumn.vue) -Added user login expiration example
+
+### ⚡ Performance Improvements
+
+-Consolidate some language files to reduce the number of files
+
+### 🐛 Bug Fixes
+
+-Fix the flashing white screen when the dark theme refreshes -Fix the problem that other functions are invalid when the tab is closed -Fix known issues in the form -Fix the automatic lock screen failure
+
+## 2.3.0 (2021-04-10)
+
+## (Breaking changes) Breaking changes
+
+- Use `pinia` to replace `vuex`, `vuex-module-decorators`.
+
+  -Impact, if you used vuex-module-decorators yourself before, you need to transform it to pinia.
+
+  - the reason: -pinia is basically similar to vuex5api and is easy to understand. -Subsequent switching to vuex5 has a very low cost and can also be used as a third-party state management library
+
+- Remove `useKeyPress` and use `vueuse`-`onKeyStroke` instead
+- Remove `useDebounceFn` and use `vueuse`-`useDebounceFn` instead
+- Remove `useThrottle` and use `vueuse`-`useThrottleFn` instead
+
+### ✨ Features
+
+- Tabs support persistent storage
+
+### ✨ Refactor
+
+- Remove `useElResize`
+
+### 🐛 Bug Fixes
+
+- Login page style fix
+- Fix the known problems of the menu
+- Fix the problem of theme style switching
+
+## 2.2.0 (2021-04-06)
+
+### ✨ Features
+
+- Added `headerTitle` slot
+- New printing example
+- Added about interface
+
+### ✨ Refactor
+
+- Remove useFullScreen function
+- tinymce changed from Cdn to npm (the package size is too large)
+- Dashboard refactoring
+- Remove ApexCharts and examples
+
+### 🐛 Bug Fixes
+
+- Make sure the breadcrumbs are displayed correctly
+- Fixed the issue of tinymce upload button disappearing in full screen mode
+- Make sure that the title changes normally after logging in again
+- Ensure that the background mode login is normal
+- Fix TableAction click event issue
+
 ## 2.1.1 (2021-03-26)
 
 ### ✨ Features

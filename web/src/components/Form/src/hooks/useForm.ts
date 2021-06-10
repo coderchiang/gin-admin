@@ -65,6 +65,11 @@ export function useForm(props?: Props): UseFormReturnType {
       form.updateSchema(data);
     },
 
+    resetSchema: async (data: Partial<FormSchema> | Partial<FormSchema>[]) => {
+      const form = await getForm();
+      form.resetSchema(data);
+    },
+
     clearValidate: async (name?: string | string[]) => {
       const form = await getForm();
       form.clearValidate(name);
@@ -77,8 +82,7 @@ export function useForm(props?: Props): UseFormReturnType {
     },
 
     removeSchemaByFiled: async (field: string | string[]) => {
-      const form = await getForm();
-      form.removeSchemaByFiled(field);
+      unref(formRef)?.removeSchemaByFiled(field);
     },
 
     // TODO promisify

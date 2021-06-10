@@ -1,7 +1,7 @@
 <template>
   <Dropdown placement="bottomLeft" :overlayClassName="`${prefixCls}-dropdown-overlay`">
     <span :class="[prefixCls, `${prefixCls}--${theme}`]" class="flex">
-      <img :class="`${prefixCls}__header`" :src="headerImg" />
+      <img :class="`${prefixCls}__header`" :src="getUserInfo.avatar" />
       <span :class="`${prefixCls}__info hidden md:block`">
         <span :class="`${prefixCls}__name  `" class="truncate">
           {{ getUserInfo.realName }}
@@ -19,6 +19,7 @@
         />
         <MenuDivider v-if="getShowDoc" />
         <MenuItem
+          v-if="getUseLockPage"
           key="lock"
           :text="t('layout.header.tooltipLock')"
           icon="ion:lock-closed-outline"
@@ -41,7 +42,7 @@
 
   import { DOC_URL } from '/@/settings/siteSetting';
 
-  import { userStore } from '/@/store/modules/user';
+  import { useUserStore } from '/@/store/modules/user';
   import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
@@ -70,11 +71,12 @@
     setup() {
       const { prefixCls } = useDesign('header-user-dropdown');
       const { t } = useI18n();
-      const { getShowDoc } = useHeaderSetting();
+      const { getShowDoc, getUseLockPage } = useHeaderSetting();
+      const userStore = useUserStore();
 
       const getUserInfo = computed(() => {
-        const { username = '', nickname } = userStore.getUserInfoState || {};
-        return { username, nickname };
+        const { realName = '', avatar, desc } = userStore.getUserInfo || {};
+        return { realName, avatar: avatar || headerImg, desc };
       });
 
       const [register, { openModal }] = useModal();
@@ -113,8 +115,8 @@
         getUserInfo,
         handleMenuClick,
         getShowDoc,
-        headerImg,
         register,
+        getUseLockPage,
       };
     },
   });
@@ -130,10 +132,6 @@
     font-size: 12px;
     cursor: pointer;
     align-items: center;
-
-    &:hover {
-      background: @header-light-bg-hover-color;
-    }
 
     img {
       width: 24px;
@@ -151,11 +149,15 @@
 
     &--dark {
       &:hover {
-        background: @header-dark-bg-hover-color;
+        background-color: @header-dark-bg-hover-color;
       }
     }
 
     &--light {
+      &:hover {
+        background-color: @header-light-bg-hover-color;
+      }
+
       .@{prefix-cls}__name {
         color: @text-color-base;
       }

@@ -6,41 +6,18 @@
       @done="handleDone"
       v-if="showImageUpload"
       v-show="editorRef"
+      :disabled="disabled"
     />
     <textarea :id="tinymceId" ref="elRef" :style="{ visibility: 'hidden' }"></textarea>
   </div>
 </template>
 
 <script lang="ts">
-  import {
-    defineComponent,
-    computed,
-    nextTick,
-    ref,
-    unref,
-    watch,
-    onUnmounted,
-    onDeactivated,
-  } from 'vue';
-
+  import type { RawEditorSettings } from 'tinymce';
   import tinymce from 'tinymce/tinymce';
-  import 'tinymce/skins/ui/oxide/skin.min.css';
   import 'tinymce/themes/silver';
 
-  import toolbar from './toolbar';
-  import plugins from './plugins';
-
-  import { buildShortUUID } from '/@/utils/uuid';
-  import { bindHandlers } from './helper';
-  import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
-  import ImgUpload from './ImgUpload.vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { isNumber } from '/@/utils/is';
-
   import 'tinymce/icons/default/icons';
-  import 'tinymce/themes/mobile';
-  import 'tinymce/plugins/emoticons';
-  import 'tinymce/plugins/emoticons/js/emojis';
   import 'tinymce/plugins/advlist';
   import 'tinymce/plugins/anchor';
   import 'tinymce/plugins/autolink';
@@ -50,8 +27,6 @@
   import 'tinymce/plugins/directionality';
   import 'tinymce/plugins/fullscreen';
   import 'tinymce/plugins/hr';
-  import 'tinymce/plugins/image';
-  import 'tinymce/plugins/imagetools';
   import 'tinymce/plugins/insertdatetime';
   import 'tinymce/plugins/link';
   import 'tinymce/plugins/lists';
@@ -66,16 +41,39 @@
   import 'tinymce/plugins/searchreplace';
   import 'tinymce/plugins/spellchecker';
   import 'tinymce/plugins/tabfocus';
-  import 'tinymce/plugins/table';
+  // import 'tinymce/plugins/table';
   import 'tinymce/plugins/template';
   import 'tinymce/plugins/textpattern';
   import 'tinymce/plugins/visualblocks';
   import 'tinymce/plugins/visualchars';
   import 'tinymce/plugins/wordcount';
 
+  import {
+    defineComponent,
+    computed,
+    nextTick,
+    ref,
+    unref,
+    watch,
+    onUnmounted,
+    onDeactivated,
+  } from 'vue';
+
+  import ImgUpload from './ImgUpload.vue';
+
+  import { toolbar, plugins } from './tinymce';
+
+  import { buildShortUUID } from '/@/utils/uuid';
+  import { bindHandlers } from './helper';
+  import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
+  import { useDesign } from '/@/hooks/web/useDesign';
+  import { isNumber } from '/@/utils/is';
+  import { useLocale } from '/@/locales/useLocale';
+  import { useAppStore } from '/@/store/modules/app';
+
   const tinymceProps = {
     options: {
-      type: Object as PropType<any>,
+      type: Object as PropType<Partial<RawEditorSettings>>,
       default: {},
     },
     value: {
@@ -117,16 +115,16 @@
     props: tinymceProps,
     emits: ['change', 'update:modelValue'],
     setup(props, { emit, attrs }) {
-      const editorRef = ref<any>(null);
+      const editorRef = ref();
       const fullscreen = ref(false);
       const tinymceId = ref<string>(buildShortUUID('tiny-vue'));
       const elRef = ref<Nullable<HTMLElement>>(null);
 
       const { prefixCls } = useDesign('tinymce-container');
 
-      const tinymceContent = computed(() => {
-        return props.modelValue;
-      });
+      const appStore = useAppStore();
+
+      const tinymceContent = computed(() => props.modelValue);
 
       const containerWidth = computed(() => {
         const width = props.width;
@@ -136,38 +134,60 @@
         return width;
       });
 
-      const initOptions = computed(() => {
+      const skinName = computed(() => {
+        return appStore.getDarkMode === 'light' ? 'oxide' : 'oxide-dark';
+      });
+
+      const langName = computed(() => {
+        const lang = useLocale().getLocale.value;
+        return ['zh_CN', 'en'].includes(lang) ? lang : 'zh_CN';
+      });
+
+      const initOptions = computed((): RawEditorSettings => {
         const { height, options, toolbar, plugins } = props;
+        const publicPath = import.meta.env.VITE_PUBLIC_PATH || '/';
         return {
           selector: `#${unref(tinymceId)}`,
           height,
           toolbar,
           menubar: 'file edit insert view format table',
           plugins,
-          language_url: '/resource/tinymce/langs/zh_CN.js',
-          language: 'zh_CN',
+          language_url: publicPath + 'resource/tinymce/langs/' + langName.value + '.js',
+          language: langName.value,
           branding: false,
           default_link_target: '_blank',
           link_title: false,
-          advlist_bullet_styles: 'square',
-          advlist_number_styles: 'default',
           object_resizing: false,
-          skin: 'oxide',
-          skin_url: 'resource/tinymce/skins/ui/oxide',
-          content_css: 'resource/tinymce/skins/content/default/content.css',
+          auto_focus: true,
+          skin: skinName.value,
+          skin_url: publicPath + 'resource/tinymce/skins/ui/' + skinName.value,
+          content_css:
+            publicPath + 'resource/tinymce/skins/ui/' + skinName.value + '/content.min.css',
           ...options,
-          setup: (editor: any) => {
+          setup: (editor) => {
             editorRef.value = editor;
-            editor.on('init', (e: Event) => initSetup(e));
+            editor.on('init', (e) => initSetup(e));
           },
         };
+      });
+
+      const disabled = computed(() => {
+        const { options } = props;
+        const getdDisabled = options && Reflect.get(options, 'readonly');
+        const editor = unref(editorRef);
+        if (editor) {
+          editor.setMode(getdDisabled ? 'readonly' : 'design');
+        }
+        return getdDisabled ?? false;
       });
 
       watch(
         () => attrs.disabled,
         () => {
           const editor = unref(editorRef);
-          if (!editor) return;
+          if (!editor) {
+            return;
+          }
           editor.setMode(attrs.disabled ? 'readonly' : 'design');
         }
       );
@@ -203,9 +223,11 @@
         tinymce.init(unref(initOptions));
       }
 
-      function initSetup(e: Event) {
+      function initSetup(e) {
         const editor = unref(editorRef);
-        if (!editor) return;
+        if (!editor) {
+          return;
+        }
         const value = props.modelValue || '';
 
         editor.setContent(value);
@@ -258,21 +280,24 @@
 
       function handleImageUploading(name: string) {
         const editor = unref(editorRef);
-        if (!editor) return;
+        if (!editor) {
+          return;
+        }
         const content = editor?.getContent() ?? '';
-        setValue(editor, `${content}\n${getImgName(name)}`);
+        setValue(editor, `${content}\n${getUploadingImgName(name)}`);
       }
 
       function handleDone(name: string, url: string) {
         const editor = unref(editorRef);
-        if (!editor) return;
-
+        if (!editor) {
+          return;
+        }
         const content = editor?.getContent() ?? '';
-        const val = content?.replace(getImgName(name), `<img src="${url}"/>`) ?? '';
+        const val = content?.replace(getUploadingImgName(name), `<img src="${url}"/>`) ?? '';
         setValue(editor, val);
       }
 
-      function getImgName(name: string) {
+      function getUploadingImgName(name: string) {
         return `[uploading:${name}]`;
       }
 
@@ -287,6 +312,7 @@
         handleDone,
         editorRef,
         fullscreen,
+        disabled,
       };
     },
   });

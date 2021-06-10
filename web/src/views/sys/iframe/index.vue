@@ -32,13 +32,11 @@
       const { prefixCls } = useDesign('iframe-page');
       useWindowSizeFn(calcHeight, 150, { immediate: true });
 
-      const getWrapStyle = computed(
-        (): CSSProperties => {
-          return {
-            height: `${unref(heightRef)}px`,
-          };
-        }
-      );
+      const getWrapStyle = computed((): CSSProperties => {
+        return {
+          height: `${unref(heightRef)}px`,
+        };
+      });
 
       function calcHeight() {
         const iframe = unref(frameRef);
@@ -116,7 +114,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #fff;
+      background-color: @component-background;
       border: 0;
       box-sizing: border-box;
     }

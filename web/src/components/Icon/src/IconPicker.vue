@@ -31,8 +31,20 @@
                   v-for="icon in getPaginationList"
                   :key="icon"
                   :class="currentSelect === icon ? 'border border-primary' : ''"
-                  class="p-2 w-1/8 cursor-pointer mr-1 mt-1 flex justify-center items-center border border-solid hover:border-primary"
+                  class="
+                    p-2
+                    w-1/8
+                    cursor-pointer
+                    mr-1
+                    mt-1
+                    flex
+                    justify-center
+                    items-center
+                    border border-solid
+                    hover:border-primary
+                  "
                   @click="handleClick(icon)"
+                  :title="icon"
                 >
                   <!-- <Icon :icon="icon" :prefix="prefix" /> -->
                   <SvgIcon v-if="isSvgMode" :name="icon" />
@@ -70,17 +82,17 @@
   import { ScrollContainer } from '/@/components/Container';
 
   import { Input, Popover, Pagination, Empty } from 'ant-design-vue';
-  import Icon from './index.vue';
+  import Icon from './Icon.vue';
   import SvgIcon from './SvgIcon.vue';
 
   import iconsData from '../data/icons.data';
   import { propTypes } from '/@/utils/propTypes';
   import { usePagination } from '/@/hooks/web/usePagination';
-  import { useDebounce } from '/@/hooks/core/useDebounce';
+  import { useDebounceFn } from '@vueuse/core';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import svgIcons from 'vite-plugin-svg-icons/client';
+  import svgIcons from 'virtual:svg-icons-names';
 
   function getIcons() {
     const data = iconsData as any;
@@ -107,9 +119,7 @@
       width: propTypes.string.def('100%'),
       pageSize: propTypes.number.def(140),
       copy: propTypes.bool.def(false),
-      mode: propTypes
-        .oneOf<('svg' | 'iconify')[]>(['svg', 'iconify'])
-        .def('iconify'),
+      mode: propTypes.oneOf<('svg' | 'iconify')[]>(['svg', 'iconify']).def('iconify'),
     },
     emits: ['change'],
     setup(props, { emit }) {
@@ -123,7 +133,7 @@
       const { t } = useI18n();
       const { prefixCls } = useDesign('icon-picker');
 
-      const [debounceHandleSearchChange] = useDebounce(handleSearchChange, 100);
+      const debounceHandleSearchChange = useDebounceFn(handleSearchChange, 100);
       const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.value);
       const { createMessage } = useMessage();
 

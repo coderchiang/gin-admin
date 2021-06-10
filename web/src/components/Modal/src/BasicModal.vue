@@ -36,7 +36,7 @@
       :height="getWrapperHeight"
       :visible="visibleRef"
       :modalFooterHeight="footer !== undefined && !footer ? 0 : undefined"
-      v-bind="omit(getProps.wrapperProps, 'visible', 'height')"
+      v-bind="omit(getProps.wrapperProps, 'visible', 'height', 'modalFooterHeight')"
       @ext-height="handleExtHeight"
       @height-change="handleHeightChange"
     >
@@ -107,14 +107,12 @@
       }
 
       // Custom title component: get title
-      const getMergeProps = computed(
-        (): ModalProps => {
-          return {
-            ...props,
-            ...(unref(propsRef) as any),
-          };
-        }
-      );
+      const getMergeProps = computed((): ModalProps => {
+        return {
+          ...props,
+          ...(unref(propsRef) as any),
+        };
+      });
 
       const { handleFullScreen, getWrapClassName, fullScreenRef } = useFullScreen({
         modalWrapperRef,
@@ -122,30 +120,28 @@
         wrapClassName: toRef(getMergeProps.value, 'wrapClassName'),
       });
 
-      // modal component does not need title
-      const getProps = computed(
-        (): ModalProps => {
-          const opt = {
-            ...unref(getMergeProps),
-            visible: unref(visibleRef),
-            title: undefined,
-          };
-          return {
-            ...opt,
-            wrapClassName: unref(getWrapClassName),
-          };
-        }
-      );
+      // modal component does not need title and origin buttons
+      const getProps = computed((): ModalProps => {
+        const opt = {
+          ...unref(getMergeProps),
+          visible: unref(visibleRef),
+          okButtonProps: undefined,
+          cancelButtonProps: undefined,
+          title: undefined,
+        };
+        return {
+          ...opt,
+          wrapClassName: unref(getWrapClassName),
+        };
+      });
 
-      const getBindValue = computed(
-        (): Recordable => {
-          const attr = { ...attrs, ...unref(getProps) };
-          if (unref(fullScreenRef)) {
-            return omit(attr, 'height');
-          }
-          return attr;
+      const getBindValue = computed((): Recordable => {
+        const attr = { ...attrs, ...unref(getProps) };
+        if (unref(fullScreenRef)) {
+          return omit(attr, 'height');
         }
-      );
+        return attr;
+      });
 
       const getWrapperHeight = computed(() => {
         if (unref(fullScreenRef)) return undefined;

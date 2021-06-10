@@ -7,6 +7,8 @@ export interface RequestOptions {
   formatDate?: boolean;
   //  Whether to process the request result
   isTransformRequestResult?: boolean;
+  // 是否返回原生响应头 比如：需要获取响应头时使用该属性
+  isReturnNativeResponse?: boolean;
   // Whether to join url
   joinPrefix?: boolean;
   // Interface address, use the default apiUrl if you leave it blank
@@ -20,7 +22,7 @@ export interface RequestOptions {
 
 export interface Result<T = any> {
   code: number;
-  //type: 'success' | 'error' | 'warning';
+  type: 'success' | 'error' | 'warning';
   msg: string;
   result: T;
 }

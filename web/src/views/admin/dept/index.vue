@@ -32,7 +32,7 @@
   import { defineComponent } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getDeptList,delDept } from '/@/api/system/system';
+  import { getDeptList,delDept } from '/@/api/admin/dept';
 
   import { useModal } from '/@/components/Modal';
   import DeptModal from './DeptModal.vue';

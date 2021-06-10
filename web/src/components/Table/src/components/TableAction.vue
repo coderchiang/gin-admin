@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls, getAlign]">
+  <div :class="[prefixCls, getAlign]" @click="onCellClick">
     <template v-for="(action, index) in getActions" :key="`${index}-${action.label}`">
       <PopConfirmButton v-bind="action">
         <Icon :icon="action.icon" class="mr-1" v-if="action.icon" />
@@ -7,6 +7,7 @@
       </PopConfirmButton>
       <Divider
         type="vertical"
+        class="action-divider"
         v-if="divider && index < getActions.length - (dropDownActions ? 0 : 1)"
       />
     </template>
@@ -25,17 +26,19 @@
 </template>
 <script lang="ts">
   import { defineComponent, PropType, computed, toRaw } from 'vue';
-
   import { MoreOutlined } from '@ant-design/icons-vue';
+  import { Divider } from 'ant-design-vue';
+
   import Icon from '/@/components/Icon/index';
   import { ActionItem, TableActionType } from '/@/components/Table';
   import { PopConfirmButton } from '/@/components/Button';
-  import { Divider } from 'ant-design-vue';
   import { Dropdown } from '/@/components/Dropdown';
 
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useTableContext } from '../hooks/useTableContext';
+  import { usePermission } from '/@/hooks/web/usePermission';
 
+  import { isBoolean, isFunction } from '/@/utils/is';
   import { propTypes } from '/@/utils/propTypes';
   import { ACTION_COLUMN_FLAG } from '../const';
 
@@ -53,6 +56,7 @@
       },
       divider: propTypes.bool.def(true),
       outside: propTypes.bool,
+      stopButtonPropagation: propTypes.bool.def(false),
     },
     setup(props) {
       const { prefixCls } = useDesign('basic-table-action');
@@ -61,31 +65,56 @@
         table = useTableContext();
       }
 
+      const { hasPermission } = usePermission();
+      function isIfShow(action: ActionItem): boolean {
+        const ifShow = action.ifShow;
+
+        let isIfShow = true;
+
+        if (isBoolean(ifShow)) {
+          isIfShow = ifShow;
+        }
+        if (isFunction(ifShow)) {
+          isIfShow = ifShow(action);
+        }
+        return isIfShow;
+      }
+
       const getActions = computed(() => {
-        return (toRaw(props.actions) || []).map((action) => {
-          const { popConfirm } = action;
-          return {
-            type: 'link',
-            size: 'small',
-            ...action,
-            ...(popConfirm || {}),
-            onConfirm: popConfirm?.confirm,
-            onCancel: popConfirm?.cancel,
-            enable: !!popConfirm,
-          };
-        });
+        return (toRaw(props.actions) || [])
+          .filter((action) => {
+            return hasPermission(action.auth) && isIfShow(action);
+          })
+          .map((action) => {
+            const { popConfirm } = action;
+            return {
+              type: 'link',
+              size: 'small',
+              ...action,
+              ...(popConfirm || {}),
+              onConfirm: popConfirm?.confirm,
+              onCancel: popConfirm?.cancel,
+              enable: !!popConfirm,
+            };
+          });
       });
 
       const getDropdownList = computed(() => {
-        return (toRaw(props.dropDownActions) || []).map((action, index) => {
-          const { label, popConfirm } = action;
-          return {
-            ...action,
-            ...popConfirm,
-            text: label,
-            divider: index < props.dropDownActions.length - 1 ? props.divider : false,
-          };
-        });
+        return (toRaw(props.dropDownActions) || [])
+          .filter((action) => {
+            return hasPermission(action.auth) && isIfShow(action);
+          })
+          .map((action, index) => {
+            const { label, popConfirm } = action;
+            return {
+              ...action,
+              ...popConfirm,
+              onConfirm: popConfirm?.confirm,
+              onCancel: popConfirm?.cancel,
+              text: label,
+              divider: index < props.dropDownActions.length - 1 ? props.divider : false,
+            };
+          });
       });
 
       const getAlign = computed(() => {
@@ -94,7 +123,15 @@
         return actionColumn?.align ?? 'left';
       });
 
-      return { prefixCls, getActions, getDropdownList, getAlign };
+      function onCellClick(e: MouseEvent) {
+        if (!props.stopButtonPropagation) return;
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'BUTTON') {
+          e.stopPropagation();
+        }
+      }
+
+      return { prefixCls, getActions, getDropdownList, getAlign, onCellClick };
     },
   });
 </script>
@@ -104,6 +141,10 @@
   .@{prefix-cls} {
     display: flex;
     align-items: center;
+
+    .action-divider {
+      display: table;
+    }
 
     &.left {
       justify-content: flex-start;

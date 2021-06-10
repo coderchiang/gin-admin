@@ -1,6 +1,13 @@
 <template>
   <LoginFormTitle v-show="getShow" class="enter-x" />
-  <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef" v-show="getShow">
+  <Form
+    class="p-4 enter-x"
+    :model="formData"
+    :rules="getFormRules"
+    ref="formRef"
+    v-show="getShow"
+    @keypress.enter="handleLogin"
+  >
     <FormItem name="account" class="enter-x">
       <Input size="large" v-model:value="formData.account" :placeholder="t('sys.login.userName')" />
     </FormItem>
@@ -12,9 +19,7 @@
         :placeholder="t('sys.login.password')"
       />
     </FormItem>
-
-
-    <ARow class="enter-x" v-show="true">
+     <ARow class="enter-x" v-show="true">
       <ACol>
         <FormItem class="code-input" name="captcha">
           <Input
@@ -69,7 +74,7 @@
           {{ t('sys.login.mobileSignInFormTitle') }}
         </Button>
       </ACol>
-      <ACol :md="8" :xs="24" class="xs:my-2 md:my-0 xs:mx-0 md:mx-2">
+      <ACol :md="8" :xs="24" class="!my-2 !md:my-0 xs:mx-0 md:mx-2">
         <Button block @click="setLoginState(LoginStateEnum.QR_CODE)">
           {{ t('sys.login.qrSignInFormTitle') }}
         </Button>
@@ -108,11 +113,10 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';
 
-  import { userStore } from '/@/store/modules/user';
+  import { useUserStore } from '/@/store/modules/user';
   import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { useKeyPress } from '/@/hooks/event/useKeyPress';
-  import { KeyCodeEnum } from '/@/enums/keyCodeEnum';
+  //import { onKeyStroke } from '@vueuse/core';
 
   export default defineComponent({
     name: 'LoginForm',
@@ -135,51 +139,46 @@
     },
     setup() {
       const { t } = useI18n();
-      const { notification } = useMessage();
+      const { notification, createErrorModal } = useMessage();
       const { prefixCls } = useDesign('login');
+      const userStore = useUserStore();
 
       const { setLoginState, getLoginState } = useLoginState();
       const { getFormRules } = useFormRules();
 
-      const formRef = ref<any>(null);
+      const formRef = ref();
       const loading = ref(false);
       const rememberMe = ref(false);
-       onMounted(() => {
+      onMounted(() => {
         loadCaptcha();
       });
 
-  const formState = reactive({
+      const formData = reactive({
+        account: 'guest',
+        password: '123456',
+      });
+
+       const formState = reactive({
         loading: false,
         CaptchaSrc: '',
         CaptchaId:'',
         // isMultiTenant: globSetting.multiTenantType !== 'NONE',
         // showCaptcha: globSetting.showCaptcha === 'true',
       });
-      const formData = reactive({
-        account: 'guest',
-        password: '123456',
-        captcha:"",
-      });
 
-
-
-      // 加载验证码
-    async function loadCaptcha() {
+         // 加载验证码
+      async function loadCaptcha() {
         const res = await userStore.loadCaptcha();
         formState.CaptchaSrc = res.CaptchaSrc;
         formState.CaptchaId =res.CaptchaId
 
       }
 
+     
 
       const { validForm } = useFormValid(formRef);
-      useKeyPress(['enter'], (events) => {
-        const keyCode = events.keyCode;
 
-        if (keyCode === KeyCodeEnum.ENTER) {
-          handleLogin();
-        }
-      });
+      //onKeyStroke('Enter', handleLogin);
 
       const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN);
 
@@ -188,7 +187,7 @@
         if (!data) return;
         try {
           loading.value = true;
-          const userInfo = await userStore.login(
+           const userInfo = await userStore.login(
             toRaw({
               password: data.password,
               username: data.account,
@@ -199,10 +198,16 @@
           if (userInfo) {
             notification.success({
               message: t('sys.login.loginSuccessTitle'),
-              description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.username}`,
+              description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.nickname}`,
               duration: 3,
             });
           }
+        } catch (error) {
+          createErrorModal({
+            title: t('sys.api.errorTip'),
+            content: error.message || t('sys.api.networkExceptionMsg'),
+            getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
+          });
         } finally {
           loading.value = false;
         }
@@ -215,10 +220,10 @@
         formData,
         getFormRules,
         rememberMe,
-        handleLogin,
-        loading,
         formState,
         loadCaptcha,
+        handleLogin,
+        loading,
         setLoginState,
         LoginStateEnum,
         getShow,

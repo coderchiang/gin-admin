@@ -28,7 +28,8 @@
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { BasicTree, TreeItem } from '/@/components/Tree';
 
-  import { getMenuList ,editRole,addRole} from '/@/api/system/system';
+  import { editRole,addRole} from '/@/api/admin/role';
+  import { getMenuList } from '/@/api/admin/menu';
 
   export default defineComponent({
     name: 'RoleDrawer',

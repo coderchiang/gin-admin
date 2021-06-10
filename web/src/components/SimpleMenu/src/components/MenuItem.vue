@@ -39,9 +39,8 @@
 
       const active = ref(false);
 
-      const { getItemStyle, getParentList, getParentMenu, getParentRootMenu } = useMenuItem(
-        instance
-      );
+      const { getItemStyle, getParentList, getParentMenu, getParentRootMenu } =
+        useMenuItem(instance);
 
       const { prefixCls } = useDesign('menu');
 
@@ -66,11 +65,16 @@
 
       function handleClickItem() {
         const { disabled } = props;
-        if (disabled) return;
+        if (disabled) {
+          return;
+        }
 
         rootMenuEmitter.emit('on-menu-item-select', props.name);
-        if (unref(getCollapse)) return;
+        if (unref(getCollapse)) {
+          return;
+        }
         const { uidList } = getParentList();
+
         rootMenuEmitter.emit('on-update-opened', {
           opend: false,
           parent: instance?.parent,

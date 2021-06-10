@@ -32,7 +32,7 @@
   import { defineComponent,onMounted } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getMenuList,delMenu } from '/@/api/system/system';
+  import { getMenuList,delMenu } from '/@/api/admin/menu';
 
   import { useDrawer } from '/@/components/Drawer';
   import MenuDrawer from './MenuDrawer.vue';

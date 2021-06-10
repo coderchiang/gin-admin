@@ -6,18 +6,19 @@ import { isFunction } from '/@/utils/is';
 export function useTableForm(
   propsRef: ComputedRef<BasicTableProps>,
   slots: Slots,
-  fetch: (opt?: FetchParams | undefined) => Promise<void>
+  fetch: (opt?: FetchParams | undefined) => Promise<void>,
+  getLoading: ComputedRef<boolean | undefined>
 ) {
-  const getFormProps = computed(
-    (): Partial<FormProps> => {
-      const { formConfig } = unref(propsRef);
-      return {
-        showAdvancedButton: true,
-        ...formConfig,
-        compact: true,
-      };
-    }
-  );
+  const getFormProps = computed((): Partial<FormProps> => {
+    const { formConfig } = unref(propsRef);
+    const { submitButtonOptions } = formConfig || {};
+    return {
+      showAdvancedButton: true,
+      ...formConfig,
+      submitButtonOptions: { loading: unref(getLoading), ...submitButtonOptions },
+      compact: true,
+    };
+  });
 
   const getFormSlotKeys = computed(() => {
     const keys = Object.keys(slots);

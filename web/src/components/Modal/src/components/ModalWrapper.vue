@@ -24,7 +24,6 @@
   import { useWindowSizeFn } from '/@/hooks/event/useWindowSizeFn';
   import { ScrollContainer } from '/@/components/Container';
 
-  // import { useElResize } from '/@/hooks/event/useElResize';
   import { propTypes } from '/@/utils/propTypes';
   import { createModalContext } from '../hooks/useModalContext';
 
@@ -61,15 +60,13 @@
         redoModalHeight: setModalHeight,
       });
 
-      const spinStyle = computed(
-        (): CSSProperties => {
-          return {
-            minHeight: `${props.minHeight}px`,
-            // padding 28
-            height: `${unref(realHeightRef)}px`,
-          };
-        }
-      );
+      const spinStyle = computed((): CSSProperties => {
+        return {
+          minHeight: `${props.minHeight}px`,
+          // padding 28
+          maxHeight: `${unref(realHeightRef)}px`,
+        };
+      });
 
       watchEffect(() => {
         props.useWrapper && setModalHeight();
