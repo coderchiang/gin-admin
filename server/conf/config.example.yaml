@@ -32,7 +32,7 @@ log:
 
 jwt:
   signing-key: 'gin-admin'
-  expire: 20
+  expire: 7200
 
 captcha:
   key-long: 4
