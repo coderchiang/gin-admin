@@ -2,19 +2,21 @@
   <div class="m-4 mr-0 overflow-hidden bg-white">
     <BasicTree
       title="部门列表"
+      :treeData="treeData"
       toolbar
       search
-      :clickRowToExpand="false"
-      :treeData="treeData"
+      :clickRowToExpand="true"
       :replaceFields="{ key: 'id', title: 'deptName' }"
+      defaultExpandAll
       @select="handleSelect"
+      
     />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent, onMounted, ref } from 'vue';
 
-  import { BasicTree, TreeItem } from '/@/components/Tree';
+  import { BasicTree, TreeItem } from '/@/components/Tree/index';
   import { getDeptList } from '/@/api/admin/dept';
 
   export default defineComponent({

@@ -1,6 +1,6 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
+    <DeptTree class="w-1/4 xl:w-1/5"  @select="handleSelect" />
     <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate">新增账号</a-button>
