@@ -4,6 +4,9 @@ export default {
     errorTip: '错误提示',
     errorMessage: '操作失败,系统异常!',
     timeoutMessage: '登录超时,请重新登录!',
+    authEmpty:'令牌为空，不合法！',
+    authExpire:'令牌已经过期，请重新登陆！',
+    authError:'令牌错误，请通过正常途径登陆',
     apiTimeoutMessage: '接口请求超时,请刷新页面重试!',
     apiRequestFailed: '请求出错，请稍候重试',
     networkException: '网络异常',
@@ -84,6 +87,7 @@ export default {
     // placeholder
     accountPlaceholder: '请输入账号',
     passwordPlaceholder: '请输入密码',
+    captchePlaceholder: '请输入验证码',
     smsPlaceholder: '请输入验证码',
     mobilePlaceholder: '请输入手机号码',
     policyPlaceholder: '勾选后才能注册',

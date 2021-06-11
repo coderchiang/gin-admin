@@ -66,25 +66,41 @@ const transform: AxiosTransform = {
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
     switch (code) {
       case  ResultEnum.AUTHEMPTY:
-        router.push(PageEnum.BASE_LOGIN);    
+        router.push(PageEnum.BASE_LOGIN);  
+        const authEmpty = t('sys.api.authEmpty');
         setTimeout(() =>{
-          location.reload(); 
-          createMessage.error(msg);
-        },500)
-
+          createErrorModal({
+            title: t('sys.api.operationFailed'),
+            content: authEmpty,
+          });
+        },200)
+        throw new Error(authEmpty); 
+      
         case  ResultEnum.AUTHEXPIRE:
-          router.push(PageEnum.BASE_LOGIN);    
+          router.push(PageEnum.BASE_LOGIN);  
+          const authExpire = t('sys.api.authExpire');
           setTimeout(() =>{
-            location.reload(); 
-            createMessage.error(msg);
-          },500)
+            createErrorModal({
+              title: t('sys.api.operationFailed'),
+              content: authExpire,
+            });
+          },200)
+         
+          throw new Error(authExpire); 
+        
 
           case  ResultEnum.AUTHERROR:
-            router.push(PageEnum.BASE_LOGIN);    
+            router.push(PageEnum.BASE_LOGIN);  
+            const authError = t('sys.api.authError');
             setTimeout(() =>{
-              location.reload(); 
-              createMessage.error(msg);
-            },500)
+              createErrorModal({
+                title: t('sys.api.operationFailed'),
+                content: authError,
+              });
+            },200)
+           
+            throw new Error(authError);
+           
 
 
       case ResultEnum.TIMEOUT:

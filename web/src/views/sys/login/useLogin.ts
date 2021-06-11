@@ -42,6 +42,7 @@ export function useFormRules(formData?: Recordable) {
 
   const getAccountFormRule = computed(() => createRule(t('sys.login.accountPlaceholder')));
   const getPasswordFormRule = computed(() => createRule(t('sys.login.passwordPlaceholder')));
+  const getCaptchaRule = computed(() => createRule(t('sys.login.captchePlaceholder')));
   const getSmsFormRule = computed(() => createRule(t('sys.login.smsPlaceholder')));
   const getMobileFormRule = computed(() => createRule(t('sys.login.mobilePlaceholder')));
 
@@ -64,6 +65,7 @@ export function useFormRules(formData?: Recordable) {
   const getFormRules = computed(() => {
     const accountFormRule = unref(getAccountFormRule);
     const passwordFormRule = unref(getPasswordFormRule);
+    const captcheFormRule = unref(getCaptchaRule);
     const smsFormRule = unref(getSmsFormRule);
     const mobileFormRule = unref(getMobileFormRule);
 
@@ -100,6 +102,7 @@ export function useFormRules(formData?: Recordable) {
         return {
           account: accountFormRule,
           password: passwordFormRule,
+          captcha:captcheFormRule,
         };
     }
   });

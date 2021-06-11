@@ -31,7 +31,8 @@ log:
   log-in-console: true
 
 jwt:
-  signing-key: 'jjm'
+  signing-key: 'gin-admin'
+  expire: 20
 
 captcha:
   key-long: 4

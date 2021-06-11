@@ -152,19 +152,19 @@
       onMounted(() => {
         loadCaptcha();
       });
-
-      const formData = reactive({
-        account: 'guest',
-        password: '123456',
-      });
-
-       const formState = reactive({
+      const formState = reactive({
         loading: false,
         CaptchaSrc: '',
         CaptchaId:'',
-        // isMultiTenant: globSetting.multiTenantType !== 'NONE',
-        // showCaptcha: globSetting.showCaptcha === 'true',
       });
+      const formData = reactive({
+        account: 'guest',
+        password: '123456',
+        captcha:'',
+        captchaId:formState.CaptchaId
+      });
+
+      
 
          // 加载验证码
       async function loadCaptcha() {
@@ -198,7 +198,7 @@
           if (userInfo) {
             notification.success({
               message: t('sys.login.loginSuccessTitle'),
-              description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.nickname}`,
+              description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.username}`,
               duration: 3,
             });
           }

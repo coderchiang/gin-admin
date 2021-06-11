@@ -55,6 +55,7 @@ type Captcha struct {
 
 type JWT struct {
 	SigningKey string `mapstructure:"signing-key" json:"signingKey"`
+	Expire string `mapstructure:"expire" json:"expire"`
 }
 
 type Casbin struct {

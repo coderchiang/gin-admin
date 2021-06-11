@@ -4,6 +4,9 @@ export default {
     errorTip: 'Error Tip',
     errorMessage: 'The operation failed, the system is abnormal!',
     timeoutMessage: 'Login timed out, please log in again!',
+    authEmpty:'token empty',
+    authExpire:'token expired',
+    authError:'token error',
     apiTimeoutMessage: 'The interface request timed out, please refresh the page and try again!',
     apiRequestFailed: 'The interface request failed, please try again later!',
     networkException: 'network anomaly',
@@ -90,6 +93,7 @@ export default {
     // placeholder
     accountPlaceholder: 'Please input username',
     passwordPlaceholder: 'Please input password',
+    captchePlaceholder: 'Please input captche',
     smsPlaceholder: 'Please input sms code',
     mobilePlaceholder: 'Please input mobile',
     policyPlaceholder: 'Register after checking',
