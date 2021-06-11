@@ -5,12 +5,7 @@ import { Tag } from 'ant-design-vue';
 import { Icon } from '/@/components/Icon';
 
 export const columns: BasicColumn[] = [
-  // {
-  //   title: 'ID',
-  //   dataIndex: 'id',
-  //   width: 60,
 
-  // },
   {
     title: '菜单名',
     dataIndex: 'menuName',
@@ -61,8 +56,8 @@ export const columns: BasicColumn[] = [
 
 const isDir = (type: string) => type === '0';
 const isMenu = (type: string) => type === '1';
-const isExt = (isExt: string) => isExt === '1';
 const isButton = (type: string) => type === '2';
+const isExt = (isExt: string) => isExt === '1';
 
 export const searchFormSchema: FormSchema[] = [
   {
@@ -106,14 +101,12 @@ export const formSchema: FormSchema[] = [
     label: 'ID',
     component: 'InputNumber',
     show: false,
-    //required: true,
   },
   {
     field: 'pid',
     label: 'pid',
     component: 'InputNumber',
     show: false,
-    //required: true,
   },
   {
     field: 'menuName',
@@ -147,22 +140,13 @@ export const formSchema: FormSchema[] = [
     field: 'icon',
     label: '图标',
     component: 'IconPicker',
-    required: true,
     show: ({ values }) => !isButton(values.type),
   },
-  // {
-  //   field: 'path',
-  //   label: '请求路径',
-  //   component: 'Input',
-  //   required: true,
-  //   //show: ({ values }) => !isDir(values.type),
-  // },
-
+ 
   {
     field: 'apiPath',
     label: 'apiPath',
     component: 'Input',
-    required: true,
     show: ({ values }) => isButton(values.type),
   },
   {
@@ -186,8 +170,8 @@ export const formSchema: FormSchema[] = [
     field: 'component',
     label: '组件路径',
     component: 'Input',
+   
     show: ({ values }) => isMenu(values.type),
-    required: true,
   },
 
   {
@@ -195,7 +179,6 @@ export const formSchema: FormSchema[] = [
     label: '请求路径',
     component: 'Input',
     show: ({ values }) => !isButton(values.type),
-    required: true,
   },
 
 
@@ -248,18 +231,4 @@ export const formSchema: FormSchema[] = [
       ],
     },
   },
-
-  // {
-  //   field: 'show',
-  //   label: '是否显示',
-  //   component: 'RadioButtonGroup',
-  //   defaultValue: '0',
-  //   componentProps: {
-  //     options: [
-  //       { label: '是', value: '0' },
-  //       { label: '否', value: '1' },
-  //     ],
-  //   },
-  //   show: ({ values }) => !isButton(values.type),
-  // },
 ];
