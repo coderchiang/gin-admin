@@ -87,22 +87,18 @@
           }
       }
 
-       async function handleBetchDelete(){
-         ()=>{
-          delBatchLog({ids:getSelectRowKeys()});
-           setTimeout(() =>{
-           reload();
-         },200);
-      
-      } 
-       }
-
- async function handleConfirm(type: 'warning' | 'error' | 'success' | 'info') {
+  
+    async function handleConfirm(type: 'warning' | 'error' | 'success' | 'info') {
         createConfirm({
           iconType: type,
           title: '注意',
           content: '您打算批量删除数据库日志吗？',
-           onOk:handleBetchDelete,
+          onOk: ()=>{        
+          delBatchLog({ids:getSelectRowKeys()});
+           setTimeout(() =>{
+           reload();
+         },200); 
+       },
         });
 
 
@@ -112,8 +108,6 @@
 
       return {
         registerTable,
-        //handleCreate,
-        //handleEdit,
         handleConfirm,
         handleDelete,
 
