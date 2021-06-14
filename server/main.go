@@ -18,21 +18,27 @@ import (
 
 //@host 127.0.0.1:80
 func main()  {
+
+	defer common.CACHE.Close()
+    defer common.DB.Close()
+
+	// 初始化路由
+	routers := initialize.InitRouters()
+	routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	_ = routers.Run(":"+common.CONFIG.System.Port)
+}
+
+func init(){
 	//初始华配置
 	initialize.InitConf()
 	// 初始化日志
 	initialize.InitLog()
 	//初始化redis
 	initialize.InitCache()
-	defer common.CACHE.Close()
 	//初始化数据库
 	initialize.InitDb()
-	defer common.DB.Close()
-	// 初始化路由
-	initialize.InitCasbin()
-	routers := initialize.InitRouters()
-	routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	_ = routers.Run(":"+common.CONFIG.System.Port)
-}
 
+	// 初始化Casbin
+	initialize.InitCasbin()
+}
 
