@@ -33,4 +33,4 @@ export const getUserList = (params?: UserParams) =>
 
   //reset Password
   export const resetPwd = (params?:any) =>
-  defHttp.post({ url: Api.ResetPwd, params });
+  defHttp.put({ url: Api.ResetPwd, params });

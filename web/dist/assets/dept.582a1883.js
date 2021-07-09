@@ -1,0 +1,1 @@
+import{aE as t}from"./index.36aa7878.js";var a,e;(e=a||(a={})).DeptList="/admin/dept/list",e.DeptAdd="/admin/dept/add",e.DeptEdit="/admin/dept/edit",e.DeptDel="/admin/dept/del";const d=e=>t.get({url:a.DeptList,params:e}),p=e=>t.post({url:a.DeptAdd,params:e}),s=e=>t.put({url:a.DeptEdit,params:e}),i=e=>t.delete({url:a.DeptDel,params:e});export{p as a,i as d,s as e,d as g};

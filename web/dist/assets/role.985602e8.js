@@ -1,1 +1,0 @@
-import{aE as e}from"./index.3d8324dd.js";var a,l;(l=a||(a={})).RoleList="/admin/role/list",l.RoleAdd="/admin/role/add",l.RoleEdit="/admin/role/edit",l.RoleDel="/admin/role/del";const d=l=>e.get({url:a.RoleList,params:l}),o=l=>e.post({url:a.RoleAdd,params:l}),r=l=>e.put({url:a.RoleEdit,params:l}),s=l=>e.delete({url:a.RoleDel,params:l});export{o as a,s as d,r as e,d as g};
