@@ -9,7 +9,6 @@ database=`echo "ginadmin"`
 confDir=`echo $serverDir/conf`
 goVersion=`echo "go1.16.4.linux-amd64"`
 nodeVersion=`echo "node-v14.17.0-linux-x64"`
-port= `netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`;
 
 funcInstallGo(){
   cd /usr/local
@@ -103,14 +102,14 @@ funcDockerInitMysqlAndRedis(){
      command=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
    if [  "$command" == "" ]; then
      nohup ./gin-admin &
-     echo -e  'server start  success' 
-     local port= "`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`"
+     echo -e  'server start  success' ;
+     local port="`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`";
      echo "listen port:$port"
    else
      ps -ef |grep gin-admin|grep -v grep|awk '{print $2}'|xargs kill -9
      nohup ./gin-admin &
-	   echo -e  'server start  success' 
-     local port= "`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`"
+	   echo -e  'server start  success' ;
+     local port="`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`";
      echo "listen port: $port"
    fi
    
