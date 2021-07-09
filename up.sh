@@ -104,13 +104,13 @@ funcDockerInitMysqlAndRedis(){
      nohup ./gin-admin &
      port=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
 	   echo -e  'server start  success' 
-     echo `listen port:$port`
+     echo 'listen port:'`echo $port`
    else
      ps -ef |grep gin-admin|grep -v grep|awk '{print $2}'|xargs kill -9
      nohup ./gin-admin &
      portp=`netstat -nlp |grep gin-admin| awk '{print $4}'| awk -F":" '{ print $4 }'`
 	   echo -e  'server start  success' 
-     echo `listen port:$portp`
+     echo 'listen port:'`echo $port`
    fi
    
    
